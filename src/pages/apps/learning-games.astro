@@ -44,8 +44,8 @@ const techStack = [
 ---
 
 <BaseLayout
-  title="Emerson's Learning Games"
-  description="A collection of educational games designed specifically for young children, helping them learn colors, shapes, letters, and numbers through playful interaction."
+  title="North Star Learning"
+  description="Educational games designed for young children, helping them learn colors, shapes, letters, and numbers through playful interaction. Now in closed beta on Google Play."
 >
   <!-- Hero Section -->
   <section class="relative py-20 md:py-28 overflow-hidden">
@@ -58,7 +58,10 @@ const techStack = [
             🎮
           </div>
           <div>
-            <div class="flex flex-wrap gap-2 mb-1">
+            <span class="inline-block px-3 py-1 rounded-full bg-accent-cyan/20 text-accent-cyan text-sm font-medium mb-1">
+              Closed Beta
+            </span>
+            <div class="flex flex-wrap gap-2">
               {techStack.slice(0, 3).map((tech) => (
                 <span class="tech-badge text-xs">{tech.name}</span>
               ))}
@@ -67,15 +70,15 @@ const techStack = [
         </div>
 
         <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6">
-          Emerson's <span class="gradient-text">Learning Games</span>
+          North Star <span class="gradient-text">Learning</span>
         </h1>
         <p class="text-xl text-text-secondary mb-8 max-w-2xl">
           Fun, educational games designed for little minds. Help your child discover colors, shapes, letters, and numbers through playful interaction.
         </p>
 
         <div class="flex flex-wrap gap-4">
-          <a href="#" class="btn-primary opacity-75 cursor-not-allowed">
-            Coming to Google Play
+          <a href="mailto:contact@emersondigital.dev?subject=North%20Star%20Learning%20Beta%20Access" class="btn-primary">
+            Request Beta Access
           </a>
           <a href="#features" class="btn-secondary">
             Explore Features
@@ -118,7 +121,7 @@ const techStack = [
         <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">
           <span class="gradient-text">Screenshots</span>
         </h2>
-        <p class="text-text-secondary">Coming soon - the app is currently in development.</p>
+        <p class="text-text-secondary">Screenshots coming soon.</p>
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -156,13 +159,13 @@ const techStack = [
     <div class="container-custom">
       <div class="max-w-2xl mx-auto text-center">
         <h2 class="text-2xl md:text-3xl font-bold font-heading mb-4">
-          Stay Updated
+          Join the <span class="gradient-text">Closed Beta</span>
         </h2>
         <p class="text-text-secondary mb-6">
-          We're working hard to bring Emerson's Learning Games to the Google Play Store. Follow us for updates!
+          North Star Learning is available now on Google Play as a closed beta. Email us to request access and be one of the first to try it!
         </p>
-        <a href="/contact" class="btn-primary">
-          Get Notified
+        <a href="mailto:contact@emersondigital.dev?subject=North%20Star%20Learning%20Beta%20Access" class="btn-primary">
+          Request Beta Access
         </a>
       </div>
     </div>

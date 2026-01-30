@@ -1,7 +1,7 @@
 # EmersonDigital Website
 
 ## Project Overview
-Marketing website for EmersonDigital, showcasing three apps: Emerson's Learning Games, BIMGeoSpace, and Neon Task Grid.
+Marketing website for EmersonDigital, showcasing three apps: North Star Learning, BIMGeoSpace, and Neon Task Grid.
 
 **Live URL:** https://emersondigital.dev
 
