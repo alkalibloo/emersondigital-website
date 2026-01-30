@@ -7,7 +7,7 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
-  theme?: 'light' | 'dark-neon';
+  theme?: 'light' | 'dark-neon' | 'dark-geo';
 }
 
 const {
@@ -17,7 +17,7 @@ const {
   theme = 'light'
 } = Astro.props;
 
-const themeClass = theme === 'dark-neon' ? 'theme-dark-neon' : '';
+const themeClass = theme === 'dark-neon' ? 'theme-dark-neon' : theme === 'dark-geo' ? 'theme-dark-geo' : '';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---

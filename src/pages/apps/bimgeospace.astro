@@ -1,83 +1,107 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import GridBackground from '../../components/GridBackground.astro';
 
 const features = [
   {
-    icon: "🗺️",
-    title: "Geospatial Integration",
-    description: "Seamlessly overlay BIM models onto real-world geographic data for accurate site context."
-  },
-  {
-    icon: "🏢",
-    title: "3D Model Viewer",
-    description: "Interactive 3D visualization of BIM models with intuitive navigation and measurement tools."
-  },
-  {
     icon: "📍",
-    title: "Location Intelligence",
-    description: "Analyze site conditions, terrain, and surrounding infrastructure before breaking ground."
+    title: "GPS-Accurate AR",
+    description: "Place 3D models at precise GPS coordinates using ARCore's Geospatial API. Centimeter-level accuracy with real-time visualization."
   },
   {
-    icon: "🔄",
-    title: "IFC Import",
-    description: "Import standard IFC files from popular BIM software like Revit, ArchiCAD, and more."
+    icon: "📝",
+    title: "Construction Documentation",
+    description: "Attach timestamped notes and geotagged photos to any anchor. Metadata automatically stamped with coordinates and author."
   },
   {
-    icon: "📊",
-    title: "Data Layers",
-    description: "Toggle between different data layers including utilities, elevation, and property boundaries."
+    icon: "🖼️",
+    title: "Image Tracking",
+    description: "Detect printed markers and QR codes. 3D models automatically spawn on tracked images and persist when markers leave view."
   },
   {
-    icon: "👥",
-    title: "Collaboration",
-    description: "Share views and annotations with team members for seamless project coordination."
+    icon: "☁️",
+    title: "Real-Time Cloud Sync",
+    description: "Bidirectional sync with AWS backend. Changes on mobile instantly appear on the web dashboard and vice versa."
+  },
+  {
+    icon: "📡",
+    title: "Offline-First",
+    description: "Full functionality without internet. Anchors and photos queue locally and sync automatically when connection returns."
+  },
+  {
+    icon: "🗺️",
+    title: "Web Dashboard",
+    description: "Leaflet.js-powered site map for team collaboration. View, edit, and create anchors from your desktop browser."
+  },
+];
+
+const tapModes = [
+  {
+    mode: "ADD",
+    color: "#52f2a0",
+    icon: "+",
+    description: "Tap any surface to place a 3D model or BIM anchor at that GPS location"
+  },
+  {
+    mode: "POLL",
+    color: "#60a5fa",
+    icon: "i",
+    description: "Tap existing anchors to view details, add notes, or attach photos"
+  },
+  {
+    mode: "DELETE",
+    color: "#ff5252",
+    icon: "−",
+    description: "Tap anchors to remove them from the scene and cloud storage"
   },
 ];
 
 const techStack = [
-  { name: "React", description: "Component-based UI" },
-  { name: "TypeScript", description: "Type-safe development" },
-  { name: "Three.js", description: "3D graphics engine" },
-  { name: "Mapbox GL", description: "Geospatial mapping" },
-  { name: "Node.js", description: "Backend services" },
-  { name: "PostgreSQL", description: "Data storage" },
+  { name: "Kotlin", description: "Modern Android development" },
+  { name: "ARCore", description: "Geospatial API" },
+  { name: "SceneView", description: "3D rendering engine" },
+  { name: "AWS Lambda", description: "Serverless backend" },
+  { name: "DynamoDB", description: "Anchor persistence" },
+  { name: "S3", description: "Photo storage" },
 ];
 ---
 
 <BaseLayout
   title="BIMGeoSpace"
-  description="A powerful tool that bridges Building Information Modeling with geospatial data, enabling architects and engineers to visualize projects in real-world context."
+  description="GPS-accurate AR for construction documentation. Place 3D models at precise coordinates, attach timestamped photos and notes, and sync in real-time with your team."
+  theme="dark-geo"
 >
   <!-- Hero Section -->
   <section class="relative py-20 md:py-28 overflow-hidden">
-    <GridBackground variant="hero" />
+    <!-- Animated grid background -->
+    <div class="absolute inset-0 grid-background-subtle opacity-50"></div>
 
     <div class="container-custom relative z-10">
       <div class="max-w-4xl mx-auto">
+        <!-- Status badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-cyan/10 border border-accent-cyan/30 mb-6 geo-pulse">
+          <span class="w-2 h-2 bg-accent-cyan rounded-full animate-pulse"></span>
+          <span class="text-accent-cyan text-sm font-medium" style="font-family: 'Orbitron', sans-serif;">IN DEVELOPMENT</span>
+        </div>
+
         <div class="flex items-center gap-4 mb-6">
-          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-pink to-accent-pink flex items-center justify-center text-3xl">
-            🏗️
-          </div>
-          <div>
-            <div class="flex flex-wrap gap-2 mb-1">
-              {techStack.slice(0, 4).map((tech) => (
-                <span class="tech-badge text-xs">{tech.name}</span>
-              ))}
-            </div>
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#03dac5] to-[#6200ee] flex items-center justify-center text-2xl font-bold text-white shadow-lg" style="box-shadow: 0 0 30px rgba(3, 218, 197, 0.4), 0 0 60px rgba(98, 0, 238, 0.3); font-family: 'Orbitron', sans-serif;">
+            BG
           </div>
         </div>
 
-        <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6" style="font-family: 'Orbitron', sans-serif;">
           <span class="gradient-text">BIMGeoSpace</span>
         </h1>
-        <p class="text-xl text-text-secondary mb-8 max-w-2xl">
-          Where Building Information Modeling meets geospatial intelligence. Visualize your projects in their real-world context before construction begins.
+        <p class="text-xl text-text-secondary mb-4 max-w-2xl">
+          GPS-accurate augmented reality for construction professionals. Place 3D models at exact coordinates and document your site in real-time.
+        </p>
+        <p class="text-lg text-accent-cyan mb-8 max-w-2xl">
+          <strong>Field-ready.</strong> Works offline. Syncs when connected.
         </p>
 
         <div class="flex flex-wrap gap-4">
-          <a href="#" class="btn-primary opacity-75 cursor-not-allowed">
-            Coming Soon
+          <a href="#ar-demo" class="btn-primary">
+            See AR in Action
           </a>
           <a href="#features" class="btn-secondary">
             Explore Features
@@ -87,25 +111,153 @@ const techStack = [
     </div>
   </section>
 
+  <!-- AR Interface Demo Section -->
+  <section id="ar-demo" class="py-16 md:py-24">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="font-family: 'Orbitron', sans-serif;">
+          <span class="gradient-text">Precision AR Interface</span>
+        </h2>
+        <p class="text-text-secondary max-w-2xl mx-auto">
+          Real-time GPS accuracy indicators, NAD83 coordinate display, and intuitive touch controls designed for field work.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <!-- AR UI Mockup -->
+        <div class="geo-panel p-6 md:p-8">
+          <!-- AR Viewfinder simulation -->
+          <div class="relative aspect-video rounded-lg overflow-hidden" style="background: linear-gradient(135deg, rgba(15, 40, 71, 0.9) 0%, rgba(10, 22, 40, 0.95) 100%);">
+            <!-- Grid overlay -->
+            <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(rgba(3, 218, 197, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(3, 218, 197, 0.3) 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+            <!-- AR corners -->
+            <div class="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-accent-cyan"></div>
+            <div class="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-accent-cyan"></div>
+            <div class="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-accent-cyan"></div>
+            <div class="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-accent-cyan"></div>
+
+            <!-- 3D Model placeholder -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div class="relative">
+                <!-- Simple 3D building representation -->
+                <div class="w-32 h-24 bg-gradient-to-b from-[#bb86fc]/60 to-[#6200ee]/40 rounded-sm transform -skew-x-2 border border-[#bb86fc]/50" style="box-shadow: 0 0 30px rgba(187, 134, 252, 0.3);"></div>
+                <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-36 h-2 bg-[#03dac5]/30 blur-sm rounded-full"></div>
+                <!-- GPS marker -->
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2">
+                  <div class="w-4 h-4 bg-[#03dac5] rounded-full animate-pulse" style="box-shadow: 0 0 12px #03dac5;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Left sidebar mockup -->
+            <div class="absolute top-4 left-4 space-y-2">
+              <!-- Menu button with accuracy halo -->
+              <div class="relative">
+                <div class="w-10 h-10 rounded-lg bg-[#0f2847]/90 border border-[#03dac5]/30 flex items-center justify-center">
+                  <span class="text-[#03dac5] text-lg">☰</span>
+                </div>
+                <div class="absolute inset-0 rounded-lg border-2 border-[#52f2a0] animate-pulse" style="box-shadow: 0 0 12px #52f2a0;"></div>
+              </div>
+            </div>
+
+            <!-- Right side controls -->
+            <div class="absolute top-1/2 right-4 -translate-y-1/2 space-y-3">
+              {tapModes.map((tap) => (
+                <div
+                  class="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold text-xl transition-all cursor-pointer"
+                  style={`background: ${tap.color}20; border: 2px solid ${tap.color}; box-shadow: 0 0 10px ${tap.color}40;`}
+                >
+                  {tap.icon}
+                </div>
+              ))}
+            </div>
+
+            <!-- Status HUD -->
+            <div class="absolute bottom-4 left-4 right-20 bg-[#0a1628]/90 rounded-lg p-3 border border-[#03dac5]/20">
+              <div class="grid grid-cols-2 gap-x-6 gap-y-1 text-xs">
+                <div class="flex justify-between">
+                  <span class="text-text-secondary">Easting:</span>
+                  <span class="coord-display">3,119,847.23 ft</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-text-secondary">Northing:</span>
+                  <span class="coord-display">1,726,392.18 ft</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-text-secondary">Altitude:</span>
+                  <span class="coord-display">5,423.7 ft</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-text-secondary">Accuracy:</span>
+                  <span class="flex items-center gap-2">
+                    <span class="accuracy-dot high"></span>
+                    <span class="coord-display">2.3 ft</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="text-center text-text-secondary text-sm mt-4">
+          AR interface preview • Actual interface may vary
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three Tap Modes -->
+  <section class="py-16 md:py-24 bg-surface">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="font-family: 'Orbitron', sans-serif;">
+          <span class="gradient-text">Three Intuitive Modes</span>
+        </h2>
+        <p class="text-text-secondary max-w-2xl mx-auto">
+          Switch between modes instantly. Designed for one-handed operation in the field.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-6">
+        {tapModes.map((tap) => (
+          <div class="geo-panel p-6 text-center">
+            <div
+              class="w-16 h-16 rounded-xl mx-auto mb-4 flex items-center justify-center text-3xl font-bold"
+              style={`background: ${tap.color}15; border: 2px solid ${tap.color}; color: ${tap.color}; box-shadow: 0 0 20px ${tap.color}30;`}
+            >
+              {tap.icon}
+            </div>
+            <h3 class="font-semibold text-lg mb-2 text-text-primary" style={`font-family: 'Orbitron', sans-serif; color: ${tap.color};`}>
+              {tap.mode} Mode
+            </h3>
+            <p class="text-text-secondary text-sm">
+              {tap.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Features Section -->
   <section id="features" class="py-16 md:py-24">
     <div class="container-custom">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">
-          Powerful <span class="gradient-text">Features</span>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="font-family: 'Orbitron', sans-serif;">
+          <span class="gradient-text">Built for the Field</span>
         </h2>
         <p class="text-text-secondary max-w-2xl mx-auto">
-          Everything you need to bridge the gap between your BIM models and the real world.
+          Every feature designed for construction professionals who need reliability on-site.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {features.map((feature) => (
-          <div class="gradient-border bg-surface rounded-2xl p-6 card-shadow card-shadow-hover transition-all duration-300">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan/20 to-accent-pink/20 flex items-center justify-center text-2xl mb-4">
+          <div class="gradient-border rounded-2xl p-6 transition-all duration-300">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#03dac5]/20 to-[#bb86fc]/20 flex items-center justify-center text-2xl mb-4">
               {feature.icon}
             </div>
-            <h3 class="font-heading font-semibold text-lg mb-2">{feature.title}</h3>
+            <h3 class="font-semibold text-lg mb-2 text-text-primary" style="font-family: 'Orbitron', sans-serif;">{feature.title}</h3>
             <p class="text-text-secondary text-sm">{feature.description}</p>
           </div>
         ))}
@@ -113,59 +265,145 @@ const techStack = [
     </div>
   </section>
 
-  <!-- Demo Placeholder -->
+  <!-- How It Works -->
   <section class="py-16 md:py-24 bg-surface">
     <div class="container-custom">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">
-          See It In <span class="gradient-text">Action</span>
-        </h2>
-        <p class="text-text-secondary">Interactive demo coming soon.</p>
-      </div>
-
       <div class="max-w-4xl mx-auto">
-        <div class="aspect-video rounded-2xl bg-gradient-to-br from-accent-cyan/10 to-accent-pink/10 flex items-center justify-center card-shadow">
-          <div class="text-center">
-            <span class="text-6xl mb-4 block">🌍</span>
-            <p class="text-text-secondary">Interactive 3D Demo</p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center" style="font-family: 'Orbitron', sans-serif;">
+          <span class="gradient-text">Site Documentation Workflow</span>
+        </h2>
+
+        <div class="space-y-8">
+          <div class="flex gap-6 items-start">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#03dac5] to-[#bb86fc] flex items-center justify-center text-white font-bold flex-shrink-0" style="font-family: 'Orbitron', sans-serif; box-shadow: 0 0 20px rgba(3, 218, 197, 0.3);">
+              1
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg mb-2 text-text-primary" style="font-family: 'Orbitron', sans-serif;">Enable Geospatial Mode</h3>
+              <p class="text-text-secondary">
+                Toggle GPS tracking to lock your device to real-world coordinates. The accuracy halo shows signal quality in real-time (green &lt;4ft, yellow 4-10ft, red &gt;10ft).
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-6 items-start">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#03dac5] to-[#bb86fc] flex items-center justify-center text-white font-bold flex-shrink-0" style="font-family: 'Orbitron', sans-serif; box-shadow: 0 0 20px rgba(3, 218, 197, 0.3);">
+              2
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg mb-2 text-text-primary" style="font-family: 'Orbitron', sans-serif;">Place Models & Anchors</h3>
+              <p class="text-text-secondary">
+                Tap any surface in ADD mode to place a 3D model or BIM anchor. Models persist at their exact GPS coordinates across sessions and device reboots.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-6 items-start">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#03dac5] to-[#bb86fc] flex items-center justify-center text-white font-bold flex-shrink-0" style="font-family: 'Orbitron', sans-serif; box-shadow: 0 0 20px rgba(3, 218, 197, 0.3);">
+              3
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg mb-2 text-text-primary" style="font-family: 'Orbitron', sans-serif;">Document with Notes & Photos</h3>
+              <p class="text-text-secondary">
+                Switch to POLL mode and tap any anchor. Add timestamped notes, capture photos with automatic GPS/timestamp metadata stamping, and attach to the anchor.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-6 items-start">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#03dac5] to-[#bb86fc] flex items-center justify-center text-white font-bold flex-shrink-0" style="font-family: 'Orbitron', sans-serif; box-shadow: 0 0 20px rgba(3, 218, 197, 0.3);">
+              4
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg mb-2 text-text-primary" style="font-family: 'Orbitron', sans-serif;">Sync & Collaborate</h3>
+              <p class="text-text-secondary">
+                Data syncs automatically to the cloud. Team members see updates on the web dashboard instantly. Offline changes queue and sync when connection returns.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Use Cases Section -->
+  <!-- Cloud Architecture -->
   <section class="py-16 md:py-24">
     <div class="container-custom">
-      <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-8 text-center">
-          Perfect For <span class="gradient-text">Professionals</span>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="font-family: 'Orbitron', sans-serif;">
+          <span class="gradient-text">Enterprise-Ready Backend</span>
         </h2>
+        <p class="text-text-secondary max-w-2xl mx-auto">
+          AWS serverless architecture scales infinitely. No credentials stored on device.
+        </p>
+      </div>
 
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="gradient-border bg-surface rounded-2xl p-6 card-shadow">
-            <h3 class="font-heading font-semibold text-lg mb-3">Architects</h3>
-            <p class="text-text-secondary text-sm">
-              Understand how your design fits into the existing environment. Analyze sun paths, views, and neighborhood context.
-            </p>
+      <div class="max-w-4xl mx-auto">
+        <div class="geo-panel p-6 md:p-8">
+          <!-- Architecture diagram -->
+          <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+            <!-- Mobile -->
+            <div class="text-center">
+              <div class="w-16 h-24 mx-auto rounded-lg bg-gradient-to-b from-[#03dac5]/20 to-[#bb86fc]/20 border border-[#03dac5]/30 flex items-center justify-center mb-2">
+                <span class="text-2xl">📱</span>
+              </div>
+              <span class="text-xs text-text-secondary">Android App</span>
+            </div>
+
+            <div class="text-[#03dac5] text-2xl">↔</div>
+
+            <!-- API Gateway -->
+            <div class="text-center">
+              <div class="w-20 h-16 mx-auto rounded-lg bg-gradient-to-b from-[#03dac5]/20 to-[#bb86fc]/20 border border-[#03dac5]/30 flex items-center justify-center mb-2">
+                <span class="text-xl">🌐</span>
+              </div>
+              <span class="text-xs text-text-secondary">API Gateway</span>
+            </div>
+
+            <div class="text-[#03dac5] text-2xl">→</div>
+
+            <!-- Lambda -->
+            <div class="text-center">
+              <div class="w-20 h-16 mx-auto rounded-lg bg-gradient-to-b from-[#03dac5]/20 to-[#bb86fc]/20 border border-[#03dac5]/30 flex items-center justify-center mb-2">
+                <span class="text-xl">⚡</span>
+              </div>
+              <span class="text-xs text-text-secondary">Lambda</span>
+            </div>
+
+            <div class="text-[#03dac5] text-2xl">→</div>
+
+            <!-- Storage -->
+            <div class="flex flex-col gap-2">
+              <div class="text-center">
+                <div class="w-20 h-12 mx-auto rounded-lg bg-gradient-to-b from-[#03dac5]/20 to-[#bb86fc]/20 border border-[#03dac5]/30 flex items-center justify-center mb-1">
+                  <span class="text-lg">🗄️</span>
+                </div>
+                <span class="text-xs text-text-secondary">DynamoDB</span>
+              </div>
+              <div class="text-center">
+                <div class="w-20 h-12 mx-auto rounded-lg bg-gradient-to-b from-[#03dac5]/20 to-[#bb86fc]/20 border border-[#03dac5]/30 flex items-center justify-center mb-1">
+                  <span class="text-lg">📦</span>
+                </div>
+                <span class="text-xs text-text-secondary">S3 Photos</span>
+              </div>
+            </div>
           </div>
-          <div class="gradient-border bg-surface rounded-2xl p-6 card-shadow">
-            <h3 class="font-heading font-semibold text-lg mb-3">Engineers</h3>
-            <p class="text-text-secondary text-sm">
-              Coordinate with existing infrastructure. Visualize utility connections and site access points in 3D.
-            </p>
-          </div>
-          <div class="gradient-border bg-surface rounded-2xl p-6 card-shadow">
-            <h3 class="font-heading font-semibold text-lg mb-3">Project Managers</h3>
-            <p class="text-text-secondary text-sm">
-              Present projects to stakeholders with compelling real-world visualizations that tell the whole story.
-            </p>
-          </div>
-          <div class="gradient-border bg-surface rounded-2xl p-6 card-shadow">
-            <h3 class="font-heading font-semibold text-lg mb-3">Urban Planners</h3>
-            <p class="text-text-secondary text-sm">
-              Evaluate development proposals in context. Understand the impact of new construction on communities.
-            </p>
+
+          <div class="mt-8 pt-6 border-t border-[#03dac5]/20">
+            <div class="grid md:grid-cols-3 gap-4 text-center">
+              <div>
+                <div class="text-[#03dac5] text-2xl font-bold mb-1" style="font-family: 'Orbitron', sans-serif;">Serverless</div>
+                <p class="text-text-secondary text-xs">Zero infrastructure to manage</p>
+              </div>
+              <div>
+                <div class="text-[#03dac5] text-2xl font-bold mb-1" style="font-family: 'Orbitron', sans-serif;">Presigned URLs</div>
+                <p class="text-text-secondary text-xs">No API keys on mobile device</p>
+              </div>
+              <div>
+                <div class="text-[#03dac5] text-2xl font-bold mb-1" style="font-family: 'Orbitron', sans-serif;">Idempotent</div>
+                <p class="text-text-secondary text-xs">No duplicate anchors on retry</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -176,31 +414,78 @@ const techStack = [
   <section class="py-16 md:py-24 bg-surface">
     <div class="container-custom">
       <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-8 text-center">
-          Built With <span class="gradient-text">Modern Tech</span>
+        <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center" style="font-family: 'Orbitron', sans-serif;">
+          <span class="gradient-text">Powered By</span>
         </h2>
 
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
           {techStack.map((tech) => (
-            <div class="gradient-border bg-surface rounded-xl p-4 text-center card-shadow">
-              <div class="font-heading font-semibold mb-1">{tech.name}</div>
+            <div class="gradient-border rounded-xl p-4 text-center">
+              <div class="font-semibold mb-1 text-text-primary" style="font-family: 'Orbitron', sans-serif;">{tech.name}</div>
               <div class="text-xs text-text-secondary">{tech.description}</div>
             </div>
           ))}
+        </div>
+
+        <div class="mt-8 text-center">
+          <p class="text-text-secondary text-sm">
+            Additional technologies: Ktor Client, Proj4J (NAD83 coordinates), Kotlin Serialization, AndroidX Lifecycle
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases Section -->
+  <section class="py-16 md:py-24">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center" style="font-family: 'Orbitron', sans-serif;">
+          <span class="gradient-text">Built For Professionals</span>
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="gradient-border rounded-2xl p-6">
+            <h3 class="font-semibold text-lg mb-3 text-text-primary" style="font-family: 'Orbitron', sans-serif;">Site Surveyors</h3>
+            <p class="text-text-secondary text-sm">
+              Mark survey points with GPS-accurate anchors. Document conditions with timestamped photos that include coordinate metadata for legal records.
+            </p>
+          </div>
+          <div class="gradient-border rounded-2xl p-6">
+            <h3 class="font-semibold text-lg mb-3 text-text-primary" style="font-family: 'Orbitron', sans-serif;">Construction Managers</h3>
+            <p class="text-text-secondary text-sm">
+              Track progress across the site. Place models showing planned infrastructure and compare to as-built conditions in real-time.
+            </p>
+          </div>
+          <div class="gradient-border rounded-2xl p-6">
+            <h3 class="font-semibold text-lg mb-3 text-text-primary" style="font-family: 'Orbitron', sans-serif;">Inspectors</h3>
+            <p class="text-text-secondary text-sm">
+              Document violations and compliance points with geotagged evidence. Photos automatically stamped with GPS, timestamp, and inspector name.
+            </p>
+          </div>
+          <div class="gradient-border rounded-2xl p-6">
+            <h3 class="font-semibold text-lg mb-3 text-text-primary" style="font-family: 'Orbitron', sans-serif;">Utility Locators</h3>
+            <p class="text-text-secondary text-sm">
+              Mark underground utilities in AR. Team members see exact locations when they return to the site, even months later.
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CTA Section -->
-  <section class="py-16 md:py-24">
+  <section class="py-16 md:py-24 bg-surface">
     <div class="container-custom">
       <div class="max-w-2xl mx-auto text-center">
-        <h2 class="text-2xl md:text-3xl font-bold font-heading mb-4">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-pink/10 border border-accent-pink/30 mb-6">
+          <span class="text-accent-pink text-sm font-medium" style="font-family: 'Orbitron', sans-serif;">BETA COMING SOON</span>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold mb-4 text-text-primary" style="font-family: 'Orbitron', sans-serif;">
           Interested in BIMGeoSpace?
         </h2>
         <p class="text-text-secondary mb-6">
-          We're actively developing BIMGeoSpace. Get in touch to learn more or request early access.
+          We're actively developing BIMGeoSpace for Android. Get in touch to learn more or request early access to the beta program.
         </p>
         <a href="/contact" class="btn-primary">
           Request Early Access
