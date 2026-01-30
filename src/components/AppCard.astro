@@ -1,0 +1,53 @@
+---
+interface Props {
+  name: string;
+  tagline: string;
+  description: string;
+  href: string;
+  icon: string;
+  techStack: string[];
+  accentColor?: 'cyan' | 'pink' | 'gradient';
+}
+
+const { name, tagline, description, href, icon, techStack, accentColor = 'gradient' } = Astro.props;
+
+const iconColors = {
+  cyan: 'from-accent-cyan to-accent-cyan',
+  pink: 'from-accent-pink to-accent-pink',
+  gradient: 'from-accent-cyan to-accent-pink',
+};
+---
+
+<a
+  href={href}
+  class="block group gradient-border bg-surface rounded-2xl p-6 card-shadow card-shadow-hover transition-all duration-300 hover:-translate-y-1"
+>
+  <div class="flex items-start gap-4 mb-4">
+    <div class={`w-14 h-14 rounded-xl bg-gradient-to-br ${iconColors[accentColor]} flex items-center justify-center flex-shrink-0`}>
+      <span class="text-2xl">{icon}</span>
+    </div>
+    <div>
+      <h3 class="font-heading font-semibold text-lg text-text-primary group-hover:text-accent-cyan transition-colors">
+        {name}
+      </h3>
+      <p class="text-sm text-text-secondary">{tagline}</p>
+    </div>
+  </div>
+
+  <p class="text-text-secondary text-sm mb-4 line-clamp-2">
+    {description}
+  </p>
+
+  <div class="flex flex-wrap gap-2 mb-4">
+    {techStack.map((tech) => (
+      <span class="tech-badge">{tech}</span>
+    ))}
+  </div>
+
+  <div class="flex items-center text-sm font-medium text-accent-cyan group-hover:text-accent-pink transition-colors">
+    Learn more
+    <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </div>
+</a>

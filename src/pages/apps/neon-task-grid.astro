@@ -1,0 +1,252 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GridBackground from '../../components/GridBackground.astro';
+
+const features = [
+  {
+    icon: "📊",
+    title: "Grid-Based Interface",
+    description: "A unique visual approach to task management that lets you see everything at a glance."
+  },
+  {
+    icon: "🎯",
+    title: "Priority Zones",
+    description: "Drag tasks into priority zones to instantly organize by urgency and importance."
+  },
+  {
+    icon: "🌈",
+    title: "Custom Themes",
+    description: "Personalize your workspace with vibrant color themes and visual styles."
+  },
+  {
+    icon: "📱",
+    title: "Cross-Platform",
+    description: "Seamlessly sync across iOS, Android, and web. Your tasks, everywhere."
+  },
+  {
+    icon: "⚡",
+    title: "Quick Actions",
+    description: "Gesture-based shortcuts for rapid task entry and status updates."
+  },
+  {
+    icon: "📈",
+    title: "Progress Insights",
+    description: "Visual analytics show your productivity patterns and completion trends."
+  },
+];
+
+const techStack = [
+  { name: "React Native", description: "Cross-platform mobile" },
+  { name: "TypeScript", description: "Type-safe code" },
+  { name: "Node.js", description: "Backend API" },
+  { name: "PostgreSQL", description: "Data persistence" },
+  { name: "Redis", description: "Real-time sync" },
+  { name: "AWS", description: "Cloud infrastructure" },
+];
+---
+
+<BaseLayout
+  title="Neon Task Grid"
+  description="A visually stunning task management app that uses a unique grid-based interface to help you organize, prioritize, and accomplish your goals with style."
+>
+  <!-- Hero Section -->
+  <section class="relative py-20 md:py-28 overflow-hidden">
+    <GridBackground variant="hero" />
+
+    <div class="container-custom relative z-10">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-cyan to-accent-pink flex items-center justify-center text-3xl">
+            📋
+          </div>
+          <div>
+            <div class="flex flex-wrap gap-2 mb-1">
+              {techStack.slice(0, 3).map((tech) => (
+                <span class="tech-badge text-xs">{tech.name}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6">
+          <span class="gradient-text">Neon Task Grid</span>
+        </h1>
+        <p class="text-xl text-text-secondary mb-8 max-w-2xl">
+          Task management, reimagined. A visually stunning grid-based interface that makes organizing your work a genuinely enjoyable experience.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="#" class="btn-primary opacity-75 cursor-not-allowed">
+            Coming Soon
+          </a>
+          <a href="#features" class="btn-secondary">
+            Explore Features
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-16 md:py-24">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">
+          Why You'll <span class="gradient-text">Love It</span>
+        </h2>
+        <p class="text-text-secondary max-w-2xl mx-auto">
+          Neon Task Grid combines beautiful design with powerful functionality to help you get things done.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((feature) => (
+          <div class="gradient-border bg-surface rounded-2xl p-6 card-shadow card-shadow-hover transition-all duration-300">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan/20 to-accent-pink/20 flex items-center justify-center text-2xl mb-4">
+              {feature.icon}
+            </div>
+            <h3 class="font-heading font-semibold text-lg mb-2">{feature.title}</h3>
+            <p class="text-text-secondary text-sm">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Concept Section -->
+  <section class="py-16 md:py-24 bg-surface">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">
+          The <span class="gradient-text">Grid</span> Concept
+        </h2>
+        <p class="text-text-secondary max-w-2xl mx-auto">
+          Unlike traditional list-based task apps, Neon Task Grid gives you a visual canvas to organize your work.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <!-- Mockup Grid -->
+        <div class="rounded-2xl bg-text-primary p-8 card-shadow">
+          <div class="grid grid-cols-4 gap-3 mb-6">
+            {[...Array(16)].map((_, i) => {
+              const colors = [
+                'from-accent-cyan/80 to-accent-cyan/60',
+                'from-accent-pink/80 to-accent-pink/60',
+                'from-accent-cyan/40 to-accent-pink/40',
+                ''
+              ];
+              const hasTask = [0, 1, 4, 5, 6, 9, 10, 13].includes(i);
+              return (
+                <div
+                  class={`aspect-square rounded-lg ${hasTask
+                    ? `bg-gradient-to-br ${colors[i % 4] || colors[2]}`
+                    : 'bg-white/5 border border-white/10'
+                  } flex items-center justify-center`}
+                >
+                  {hasTask && (
+                    <div class="w-2 h-2 bg-white rounded-full" />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+          <div class="flex justify-between text-white/40 text-xs font-mono">
+            <span>URGENT</span>
+            <span>→</span>
+            <span>LATER</span>
+          </div>
+        </div>
+        <p class="text-center text-text-secondary text-sm mt-4">
+          Conceptual mockup - final design may vary
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-16 md:py-24">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-12 text-center">
+          How It <span class="gradient-text">Works</span>
+        </h2>
+
+        <div class="space-y-8">
+          <div class="flex gap-6 items-start">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-pink flex items-center justify-center text-white font-bold flex-shrink-0">
+              1
+            </div>
+            <div>
+              <h3 class="font-heading font-semibold text-lg mb-2">Add Your Tasks</h3>
+              <p class="text-text-secondary">
+                Quickly add tasks with our streamlined input. Set due dates, add tags, and include notes - or just type and go.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-6 items-start">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-pink flex items-center justify-center text-white font-bold flex-shrink-0">
+              2
+            </div>
+            <div>
+              <h3 class="font-heading font-semibold text-lg mb-2">Organize on the Grid</h3>
+              <p class="text-text-secondary">
+                Drag tasks into position on the grid. Left for urgent, right for later. Top for important, bottom for nice-to-have.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-6 items-start">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-pink flex items-center justify-center text-white font-bold flex-shrink-0">
+              3
+            </div>
+            <div>
+              <h3 class="font-heading font-semibold text-lg mb-2">Get Things Done</h3>
+              <p class="text-text-secondary">
+                Work through your tasks with satisfying animations and progress tracking. Watch your grid light up as you complete items.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Section -->
+  <section class="py-16 md:py-24 bg-surface">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-8 text-center">
+          Built With <span class="gradient-text">Modern Tech</span>
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {techStack.map((tech) => (
+            <div class="gradient-border bg-surface rounded-xl p-4 text-center card-shadow">
+              <div class="font-heading font-semibold mb-1">{tech.name}</div>
+              <div class="text-xs text-text-secondary">{tech.description}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 md:py-24">
+    <div class="container-custom">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-2xl md:text-3xl font-bold font-heading mb-4">
+          Be the First to Know
+        </h2>
+        <p class="text-text-secondary mb-6">
+          Neon Task Grid is in active development. Sign up to get notified when we launch.
+        </p>
+        <a href="/contact" class="btn-primary">
+          Join the Waitlist
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

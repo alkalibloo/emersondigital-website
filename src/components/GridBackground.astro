@@ -1,0 +1,25 @@
+---
+interface Props {
+  variant?: 'default' | 'subtle' | 'hero';
+  class?: string;
+}
+
+const { variant = 'default', class: className = '' } = Astro.props;
+
+const variants = {
+  default: 'grid-background',
+  subtle: 'grid-background-subtle',
+  hero: 'grid-background',
+};
+---
+
+<div class={`absolute inset-0 ${variants[variant]} ${className}`}>
+  {variant === 'hero' && (
+    <>
+      <!-- Gradient overlays for hero -->
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+      <div class="absolute top-0 left-1/4 w-96 h-96 bg-accent-cyan/5 rounded-full blur-3xl" />
+      <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-pink/5 rounded-full blur-3xl" />
+    </>
+  )}
+</div>

@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GridBackground from '../../components/GridBackground.astro';
+
+const features = [
+  {
+    icon: "🎨",
+    title: "Color Recognition",
+    description: "Interactive games that help children identify and name colors through fun, engaging activities."
+  },
+  {
+    icon: "🔷",
+    title: "Shape Learning",
+    description: "Discover circles, squares, triangles, and more with playful matching and sorting games."
+  },
+  {
+    icon: "🔤",
+    title: "Letter Adventures",
+    description: "Introduction to the alphabet with sound, tracing, and letter recognition activities."
+  },
+  {
+    icon: "🔢",
+    title: "Number Play",
+    description: "Counting, number recognition, and basic math concepts through animated interactions."
+  },
+  {
+    icon: "🎵",
+    title: "Sound & Music",
+    description: "Audio feedback and playful sounds that make learning engaging and memorable."
+  },
+  {
+    icon: "👶",
+    title: "Child-Safe Design",
+    description: "No ads, no in-app purchases, and designed for little hands with large touch targets."
+  },
+];
+
+const techStack = [
+  { name: "Android", description: "Native Android development" },
+  { name: "Kotlin", description: "Modern, safe language" },
+  { name: "Jetpack Compose", description: "Declarative UI" },
+  { name: "Material Design 3", description: "Beautiful, accessible UI" },
+];
+---
+
+<BaseLayout
+  title="Emerson's Learning Games"
+  description="A collection of educational games designed specifically for young children, helping them learn colors, shapes, letters, and numbers through playful interaction."
+>
+  <!-- Hero Section -->
+  <section class="relative py-20 md:py-28 overflow-hidden">
+    <GridBackground variant="hero" />
+
+    <div class="container-custom relative z-10">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-cyan to-accent-cyan flex items-center justify-center text-3xl">
+            🎮
+          </div>
+          <div>
+            <div class="flex flex-wrap gap-2 mb-1">
+              {techStack.slice(0, 3).map((tech) => (
+                <span class="tech-badge text-xs">{tech.name}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6">
+          Emerson's <span class="gradient-text">Learning Games</span>
+        </h1>
+        <p class="text-xl text-text-secondary mb-8 max-w-2xl">
+          Fun, educational games designed for little minds. Help your child discover colors, shapes, letters, and numbers through playful interaction.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="#" class="btn-primary opacity-75 cursor-not-allowed">
+            Coming to Google Play
+          </a>
+          <a href="#features" class="btn-secondary">
+            Explore Features
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-16 md:py-24">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">
+          Learning Through <span class="gradient-text">Play</span>
+        </h2>
+        <p class="text-text-secondary max-w-2xl mx-auto">
+          Every game is carefully designed to be both educational and genuinely fun, keeping little ones engaged while they learn.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((feature) => (
+          <div class="gradient-border bg-surface rounded-2xl p-6 card-shadow card-shadow-hover transition-all duration-300">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan/20 to-accent-pink/20 flex items-center justify-center text-2xl mb-4">
+              {feature.icon}
+            </div>
+            <h3 class="font-heading font-semibold text-lg mb-2">{feature.title}</h3>
+            <p class="text-text-secondary text-sm">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshots Placeholder -->
+  <section class="py-16 md:py-24 bg-surface">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">
+          <span class="gradient-text">Screenshots</span>
+        </h2>
+        <p class="text-text-secondary">Coming soon - the app is currently in development.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {[1, 2, 3, 4].map((i) => (
+          <div class="aspect-[9/16] rounded-2xl bg-gradient-to-br from-accent-cyan/10 to-accent-pink/10 flex items-center justify-center">
+            <span class="text-4xl opacity-30">📱</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Section -->
+  <section class="py-16 md:py-24">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-8 text-center">
+          Built With <span class="gradient-text">Modern Tech</span>
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {techStack.map((tech) => (
+            <div class="gradient-border bg-surface rounded-xl p-4 text-center card-shadow">
+              <div class="font-heading font-semibold mb-1">{tech.name}</div>
+              <div class="text-xs text-text-secondary">{tech.description}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 md:py-24 bg-surface">
+    <div class="container-custom">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-2xl md:text-3xl font-bold font-heading mb-4">
+          Stay Updated
+        </h2>
+        <p class="text-text-secondary mb-6">
+          We're working hard to bring Emerson's Learning Games to the Google Play Store. Follow us for updates!
+        </p>
+        <a href="/contact" class="btn-primary">
+          Get Notified
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

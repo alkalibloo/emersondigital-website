@@ -1,0 +1,52 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  tags?: string[];
+  image?: string;
+}
+
+const { title, description, date, tags = [], image } = Astro.props;
+
+const formattedDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<BaseLayout title={title} description={description} image={image}>
+  <article class="py-16 md:py-24">
+    <div class="container-custom">
+      <header class="max-w-3xl mx-auto mb-12">
+        <div class="flex flex-wrap gap-2 mb-4">
+          {tags.map((tag) => (
+            <span class="tech-badge">{tag}</span>
+          ))}
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 font-heading">{title}</h1>
+        <p class="text-text-secondary text-lg mb-4">{description}</p>
+        <time datetime={date.toISOString()} class="text-text-secondary text-sm">
+          {formattedDate}
+        </time>
+      </header>
+
+      {image && (
+        <div class="max-w-4xl mx-auto mb-12">
+          <img
+            src={image}
+            alt={title}
+            class="w-full rounded-2xl card-shadow"
+          />
+        </div>
+      )}
+
+      <div class="max-w-3xl mx-auto prose">
+        <slot />
+      </div>
+    </div>
+  </article>
+</BaseLayout>

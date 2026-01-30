@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GridBackground from '../../components/GridBackground.astro';
+
+const features = [
+  {
+    icon: "🗺️",
+    title: "Geospatial Integration",
+    description: "Seamlessly overlay BIM models onto real-world geographic data for accurate site context."
+  },
+  {
+    icon: "🏢",
+    title: "3D Model Viewer",
+    description: "Interactive 3D visualization of BIM models with intuitive navigation and measurement tools."
+  },
+  {
+    icon: "📍",
+    title: "Location Intelligence",
+    description: "Analyze site conditions, terrain, and surrounding infrastructure before breaking ground."
+  },
+  {
+    icon: "🔄",
+    title: "IFC Import",
+    description: "Import standard IFC files from popular BIM software like Revit, ArchiCAD, and more."
+  },
+  {
+    icon: "📊",
+    title: "Data Layers",
+    description: "Toggle between different data layers including utilities, elevation, and property boundaries."
+  },
+  {
+    icon: "👥",
+    title: "Collaboration",
+    description: "Share views and annotations with team members for seamless project coordination."
+  },
+];
+
+const techStack = [
+  { name: "React", description: "Component-based UI" },
+  { name: "TypeScript", description: "Type-safe development" },
+  { name: "Three.js", description: "3D graphics engine" },
+  { name: "Mapbox GL", description: "Geospatial mapping" },
+  { name: "Node.js", description: "Backend services" },
+  { name: "PostgreSQL", description: "Data storage" },
+];
+---
+
+<BaseLayout
+  title="BIMGeoSpace"
+  description="A powerful tool that bridges Building Information Modeling with geospatial data, enabling architects and engineers to visualize projects in real-world context."
+>
+  <!-- Hero Section -->
+  <section class="relative py-20 md:py-28 overflow-hidden">
+    <GridBackground variant="hero" />
+
+    <div class="container-custom relative z-10">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-pink to-accent-pink flex items-center justify-center text-3xl">
+            🏗️
+          </div>
+          <div>
+            <div class="flex flex-wrap gap-2 mb-1">
+              {techStack.slice(0, 4).map((tech) => (
+                <span class="tech-badge text-xs">{tech.name}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6">
+          <span class="gradient-text">BIMGeoSpace</span>
+        </h1>
+        <p class="text-xl text-text-secondary mb-8 max-w-2xl">
+          Where Building Information Modeling meets geospatial intelligence. Visualize your projects in their real-world context before construction begins.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="#" class="btn-primary opacity-75 cursor-not-allowed">
+            Coming Soon
+          </a>
+          <a href="#features" class="btn-secondary">
+            Explore Features
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-16 md:py-24">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">
+          Powerful <span class="gradient-text">Features</span>
+        </h2>
+        <p class="text-text-secondary max-w-2xl mx-auto">
+          Everything you need to bridge the gap between your BIM models and the real world.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((feature) => (
+          <div class="gradient-border bg-surface rounded-2xl p-6 card-shadow card-shadow-hover transition-all duration-300">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan/20 to-accent-pink/20 flex items-center justify-center text-2xl mb-4">
+              {feature.icon}
+            </div>
+            <h3 class="font-heading font-semibold text-lg mb-2">{feature.title}</h3>
+            <p class="text-text-secondary text-sm">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Placeholder -->
+  <section class="py-16 md:py-24 bg-surface">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">
+          See It In <span class="gradient-text">Action</span>
+        </h2>
+        <p class="text-text-secondary">Interactive demo coming soon.</p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <div class="aspect-video rounded-2xl bg-gradient-to-br from-accent-cyan/10 to-accent-pink/10 flex items-center justify-center card-shadow">
+          <div class="text-center">
+            <span class="text-6xl mb-4 block">🌍</span>
+            <p class="text-text-secondary">Interactive 3D Demo</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases Section -->
+  <section class="py-16 md:py-24">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-8 text-center">
+          Perfect For <span class="gradient-text">Professionals</span>
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="gradient-border bg-surface rounded-2xl p-6 card-shadow">
+            <h3 class="font-heading font-semibold text-lg mb-3">Architects</h3>
+            <p class="text-text-secondary text-sm">
+              Understand how your design fits into the existing environment. Analyze sun paths, views, and neighborhood context.
+            </p>
+          </div>
+          <div class="gradient-border bg-surface rounded-2xl p-6 card-shadow">
+            <h3 class="font-heading font-semibold text-lg mb-3">Engineers</h3>
+            <p class="text-text-secondary text-sm">
+              Coordinate with existing infrastructure. Visualize utility connections and site access points in 3D.
+            </p>
+          </div>
+          <div class="gradient-border bg-surface rounded-2xl p-6 card-shadow">
+            <h3 class="font-heading font-semibold text-lg mb-3">Project Managers</h3>
+            <p class="text-text-secondary text-sm">
+              Present projects to stakeholders with compelling real-world visualizations that tell the whole story.
+            </p>
+          </div>
+          <div class="gradient-border bg-surface rounded-2xl p-6 card-shadow">
+            <h3 class="font-heading font-semibold text-lg mb-3">Urban Planners</h3>
+            <p class="text-text-secondary text-sm">
+              Evaluate development proposals in context. Understand the impact of new construction on communities.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Section -->
+  <section class="py-16 md:py-24 bg-surface">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-8 text-center">
+          Built With <span class="gradient-text">Modern Tech</span>
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {techStack.map((tech) => (
+            <div class="gradient-border bg-surface rounded-xl p-4 text-center card-shadow">
+              <div class="font-heading font-semibold mb-1">{tech.name}</div>
+              <div class="text-xs text-text-secondary">{tech.description}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 md:py-24">
+    <div class="container-custom">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-2xl md:text-3xl font-bold font-heading mb-4">
+          Interested in BIMGeoSpace?
+        </h2>
+        <p class="text-text-secondary mb-6">
+          We're actively developing BIMGeoSpace. Get in touch to learn more or request early access.
+        </p>
+        <a href="/contact" class="btn-primary">
+          Request Early Access
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

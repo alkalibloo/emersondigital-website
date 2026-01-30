@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GridBackground from '../components/GridBackground.astro';
+import AppCard from '../components/AppCard.astro';
+import BlogCard from '../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const apps = [
+  {
+    name: "Emerson's Learning Games",
+    tagline: "Fun learning for little minds",
+    description: "A collection of educational games designed specifically for young children, helping them learn colors, shapes, letters, and numbers through playful interaction.",
+    href: "/apps/learning-games",
+    icon: "🎮",
+    techStack: ["Android", "Kotlin", "Jetpack Compose"],
+    accentColor: "cyan" as const,
+  },
+  {
+    name: "BIMGeoSpace",
+    tagline: "BIM meets geospatial intelligence",
+    description: "A powerful tool that bridges Building Information Modeling with geospatial data, enabling architects and engineers to visualize projects in real-world context.",
+    href: "/apps/bimgeospace",
+    icon: "🏗️",
+    techStack: ["React", "TypeScript", "Three.js", "GIS"],
+    accentColor: "pink" as const,
+  },
+  {
+    name: "Neon Task Grid",
+    tagline: "Task management, reimagined",
+    description: "A visually stunning task management app that uses a unique grid-based interface to help you organize, prioritize, and accomplish your goals with style.",
+    href: "/apps/neon-task-grid",
+    icon: "📋",
+    techStack: ["React Native", "Node.js", "PostgreSQL"],
+    accentColor: "gradient" as const,
+  },
+];
+
+// Get latest blog posts
+let recentPosts: any[] = [];
+try {
+  const allPosts = await getCollection('blog');
+  recentPosts = allPosts
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+    .slice(0, 3);
+} catch {
+  // Blog collection might not exist yet
+}
+---
+
+<BaseLayout title="Home" description="EmersonDigital - Crafting thoughtful software for work and play. Explore our apps: Emerson's Learning Games, BIMGeoSpace, and Neon Task Grid.">
+  <!-- Hero Section -->
+  <section class="relative min-h-[80vh] flex items-center overflow-hidden">
+    <GridBackground variant="hero" />
+
+    <div class="container-custom relative z-10 py-20">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-5xl md:text-7xl font-bold font-heading mb-6">
+          <span class="gradient-text">EmersonDigital</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-text-secondary mb-8 max-w-2xl mx-auto">
+          Crafting thoughtful software for work and play
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/apps" class="btn-primary">
+            Explore Our Apps
+          </a>
+          <a href="/about" class="btn-secondary">
+            Learn About Us
+          </a>
+        </div>
+      </div>
+
+      <!-- Floating accent elements -->
+      <div class="absolute top-1/4 left-10 w-3 h-3 bg-accent-cyan rounded-full animate-float opacity-60" style="animation-delay: 0s;" />
+      <div class="absolute top-1/3 right-20 w-4 h-4 bg-accent-pink rounded-full animate-float opacity-60" style="animation-delay: 1s;" />
+      <div class="absolute bottom-1/4 left-1/4 w-2 h-2 bg-accent-cyan rounded-full animate-float opacity-60" style="animation-delay: 2s;" />
+      <div class="absolute bottom-1/3 right-1/4 w-3 h-3 bg-accent-pink rounded-full animate-float opacity-60" style="animation-delay: 0.5s;" />
+    </div>
+  </section>
+
+  <!-- App Showcase Section -->
+  <section class="py-20 md:py-28 relative">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">
+          Our <span class="gradient-text">Apps</span>
+        </h2>
+        <p class="text-text-secondary max-w-2xl mx-auto">
+          From education to productivity to professional tools, we build software that makes a real difference.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {apps.map((app) => (
+          <AppCard {...app} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- About Blurb Section -->
+  <section class="py-20 md:py-28 bg-surface relative">
+    <GridBackground variant="subtle" />
+
+    <div class="container-custom relative z-10">
+      <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold font-heading mb-6">
+            Built with <span class="gradient-text">Purpose</span>
+          </h2>
+          <p class="text-text-secondary mb-4">
+            At EmersonDigital, we believe software should be both powerful and delightful. Every app we create starts with a simple question: how can we make someone's day a little better?
+          </p>
+          <p class="text-text-secondary mb-6">
+            Whether it's helping a child learn their ABCs, enabling an architect to visualize their next project, or helping you stay on top of your tasks, we pour care and attention into every pixel and line of code.
+          </p>
+          <a href="/about" class="btn-primary">
+            Our Story
+          </a>
+        </div>
+
+        <div class="relative">
+          <div class="aspect-square rounded-2xl bg-gradient-to-br from-accent-cyan/20 to-accent-pink/20 flex items-center justify-center">
+            <div class="text-8xl animate-float">💡</div>
+          </div>
+          <!-- Decorative elements -->
+          <div class="absolute -top-4 -right-4 w-8 h-8 rounded-lg bg-accent-cyan/20 animate-pulse-glow" />
+          <div class="absolute -bottom-4 -left-4 w-6 h-6 rounded-lg bg-accent-pink/20 animate-pulse-glow" style="animation-delay: 1.5s;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Updates Section -->
+  {recentPosts.length > 0 && (
+    <section class="py-20 md:py-28">
+      <div class="container-custom">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">
+              Latest <span class="gradient-text">Updates</span>
+            </h2>
+            <p class="text-text-secondary">
+              News, insights, and stories from our team.
+            </p>
+          </div>
+          <a href="/blog" class="mt-4 md:mt-0 text-accent-cyan hover:text-accent-pink transition-colors font-medium flex items-center">
+            View all posts
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {recentPosts.map((post) => (
+            <BlogCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              slug={post.slug}
+              tags={post.data.tags}
+              image={post.data.image}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA Section -->
+  <section class="py-20 md:py-28 bg-surface relative overflow-hidden">
+    <GridBackground variant="subtle" />
+
+    <div class="container-custom relative z-10">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-6">
+          Ready to <span class="gradient-text">Get Started</span>?
+        </h2>
+        <p class="text-text-secondary mb-8 text-lg">
+          Check out our apps or get in touch to learn more about what we're building.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/apps" class="btn-primary">
+            Browse Apps
+          </a>
+          <a href="/contact" class="btn-secondary">
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

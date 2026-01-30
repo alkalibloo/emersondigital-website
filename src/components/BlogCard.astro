@@ -1,0 +1,61 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  slug: string;
+  tags?: string[];
+  image?: string;
+}
+
+const { title, description, date, slug, tags = [], image } = Astro.props;
+
+const formattedDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric'
+});
+---
+
+<a
+  href={`/blog/${slug}`}
+  class="block group gradient-border bg-surface rounded-2xl overflow-hidden card-shadow card-shadow-hover transition-all duration-300 hover:-translate-y-1"
+>
+  {image && (
+    <div class="aspect-video overflow-hidden">
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      />
+    </div>
+  )}
+
+  <div class="p-6">
+    <div class="flex flex-wrap gap-2 mb-3">
+      {tags.slice(0, 3).map((tag) => (
+        <span class="tech-badge text-xs">{tag}</span>
+      ))}
+    </div>
+
+    <h3 class="font-heading font-semibold text-lg text-text-primary group-hover:text-accent-cyan transition-colors mb-2 line-clamp-2">
+      {title}
+    </h3>
+
+    <p class="text-text-secondary text-sm mb-4 line-clamp-2">
+      {description}
+    </p>
+
+    <div class="flex items-center justify-between">
+      <time datetime={date.toISOString()} class="text-xs text-text-secondary">
+        {formattedDate}
+      </time>
+      <span class="text-sm font-medium text-accent-cyan group-hover:text-accent-pink transition-colors flex items-center">
+        Read more
+        <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </span>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,22 @@
+{
+  "name": "emersondigital-website",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "EmersonDigital website - Crafting thoughtful software for work and play",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "deploy": "npm run build && aws s3 sync dist/ s3://emersondigital-website --delete && echo 'Deployed to S3. Run: aws cloudfront create-invalidation --distribution-id YOUR_DIST_ID --paths \"/*\"'"
+  },
+  "dependencies": {
+    "astro": "^5.2.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.0.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "typescript": "^5.7.0"
+  }
+}

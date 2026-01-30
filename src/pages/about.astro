@@ -1,0 +1,183 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GridBackground from '../components/GridBackground.astro';
+
+const values = [
+  {
+    icon: "💡",
+    title: "Purpose-Driven",
+    description: "Every app we build starts with a real problem worth solving. We don't build for the sake of building."
+  },
+  {
+    icon: "✨",
+    title: "Delightful Design",
+    description: "Functionality is table stakes. We strive to make software that's genuinely enjoyable to use."
+  },
+  {
+    icon: "🔒",
+    title: "User-First Privacy",
+    description: "We don't sell data. We don't show ads. We build software that respects the people who use it."
+  },
+  {
+    icon: "🎯",
+    title: "Thoughtful Simplicity",
+    description: "Complex problems don't require complex solutions. We find the elegant path through the noise."
+  },
+];
+---
+
+<BaseLayout title="About" description="Learn about EmersonDigital - who we are, what we believe, and why we build software.">
+  <!-- Hero Section -->
+  <section class="relative py-20 md:py-28 overflow-hidden">
+    <GridBackground variant="hero" />
+
+    <div class="container-custom relative z-10">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6">
+          About <span class="gradient-text">EmersonDigital</span>
+        </h1>
+        <p class="text-xl text-text-secondary">
+          We're a small software studio with a simple mission: create thoughtful software for work and play.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="py-16 md:py-24">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-8">
+          Our <span class="gradient-text">Story</span>
+        </h2>
+
+        <div class="prose max-w-none">
+          <p class="text-text-secondary text-lg mb-6">
+            EmersonDigital was born from a simple observation: the best software doesn't just solve problems—it brings a little joy to the process.
+          </p>
+
+          <p class="text-text-secondary mb-6">
+            Whether it's a child discovering their ABCs through play, an architect seeing their vision come to life in its real-world context, or someone finally getting their tasks organized in a way that actually works for them, great software has the power to make life a little bit better.
+          </p>
+
+          <p class="text-text-secondary mb-6">
+            That's what we're here to build. Not just functional tools, but experiences that people genuinely enjoy using. Software that respects its users, delights them, and gets out of their way when it should.
+          </p>
+
+          <p class="text-text-secondary">
+            We're still early in our journey, but we're excited about where it's heading. Thanks for being part of it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-16 md:py-24 bg-surface">
+    <GridBackground variant="subtle" />
+
+    <div class="container-custom relative z-10">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">
+          What We <span class="gradient-text">Believe</span>
+        </h2>
+        <p class="text-text-secondary max-w-2xl mx-auto">
+          These principles guide everything we build.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        {values.map((value) => (
+          <div class="gradient-border bg-surface rounded-2xl p-6 card-shadow">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan/20 to-accent-pink/20 flex items-center justify-center text-2xl mb-4">
+              {value.icon}
+            </div>
+            <h3 class="font-heading font-semibold text-lg mb-2">{value.title}</h3>
+            <p class="text-text-secondary text-sm">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Current Projects Section -->
+  <section class="py-16 md:py-24">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-8">
+          What We're <span class="gradient-text">Building</span>
+        </h2>
+
+        <div class="space-y-6">
+          <div class="gradient-border bg-surface rounded-2xl p-6 card-shadow">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-cyan flex items-center justify-center text-xl flex-shrink-0">
+                🎮
+              </div>
+              <div>
+                <h3 class="font-heading font-semibold text-lg mb-1">Emerson's Learning Games</h3>
+                <p class="text-text-secondary text-sm mb-2">
+                  Educational games for young children, focusing on colors, shapes, letters, and numbers.
+                </p>
+                <a href="/apps/learning-games" class="text-accent-cyan hover:text-accent-pink text-sm font-medium transition-colors">
+                  Learn more →
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="gradient-border bg-surface rounded-2xl p-6 card-shadow">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-pink to-accent-pink flex items-center justify-center text-xl flex-shrink-0">
+                🏗️
+              </div>
+              <div>
+                <h3 class="font-heading font-semibold text-lg mb-1">BIMGeoSpace</h3>
+                <p class="text-text-secondary text-sm mb-2">
+                  Professional tool bridging BIM with geospatial data for architects and engineers.
+                </p>
+                <a href="/apps/bimgeospace" class="text-accent-cyan hover:text-accent-pink text-sm font-medium transition-colors">
+                  Learn more →
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="gradient-border bg-surface rounded-2xl p-6 card-shadow">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan to-accent-pink flex items-center justify-center text-xl flex-shrink-0">
+                📋
+              </div>
+              <div>
+                <h3 class="font-heading font-semibold text-lg mb-1">Neon Task Grid</h3>
+                <p class="text-text-secondary text-sm mb-2">
+                  Visual task management with a unique grid-based interface.
+                </p>
+                <a href="/apps/neon-task-grid" class="text-accent-cyan hover:text-accent-pink text-sm font-medium transition-colors">
+                  Learn more →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 md:py-24 bg-surface">
+    <div class="container-custom">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-2xl md:text-3xl font-bold font-heading mb-4">
+          Let's Connect
+        </h2>
+        <p class="text-text-secondary mb-6">
+          Have questions, ideas, or just want to say hello? We'd love to hear from you.
+        </p>
+        <a href="/contact" class="btn-primary">
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

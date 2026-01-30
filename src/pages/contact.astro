@@ -1,0 +1,209 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GridBackground from '../components/GridBackground.astro';
+
+const contactMethods = [
+  {
+    icon: "📧",
+    title: "Email",
+    description: "For general inquiries and support",
+    value: "hello@emersondigital.com",
+    href: "mailto:hello@emersondigital.com"
+  },
+  {
+    icon: "🐙",
+    title: "GitHub",
+    description: "Check out our open source work",
+    value: "github.com/emersondigital",
+    href: "https://github.com/emersondigital"
+  },
+  {
+    icon: "🐦",
+    title: "Twitter",
+    description: "Follow for updates and announcements",
+    value: "@emersondigital",
+    href: "https://twitter.com/emersondigital"
+  },
+];
+---
+
+<BaseLayout title="Contact" description="Get in touch with the EmersonDigital team. We'd love to hear from you.">
+  <!-- Hero Section -->
+  <section class="relative py-20 md:py-28 overflow-hidden">
+    <GridBackground variant="hero" />
+
+    <div class="container-custom relative z-10">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6">
+          Get in <span class="gradient-text">Touch</span>
+        </h1>
+        <p class="text-xl text-text-secondary">
+          Have a question, suggestion, or just want to say hello? We'd love to hear from you.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Methods -->
+  <section class="py-16 md:py-24">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          {contactMethods.map((method) => (
+            <a
+              href={method.href}
+              target={method.href.startsWith('http') ? '_blank' : undefined}
+              rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              class="gradient-border bg-surface rounded-2xl p-6 card-shadow card-shadow-hover transition-all duration-300 hover:-translate-y-1 text-center group"
+            >
+              <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-accent-cyan/20 to-accent-pink/20 flex items-center justify-center text-2xl mx-auto mb-4">
+                {method.icon}
+              </div>
+              <h3 class="font-heading font-semibold text-lg mb-1">{method.title}</h3>
+              <p class="text-text-secondary text-sm mb-2">{method.description}</p>
+              <span class="text-accent-cyan group-hover:text-accent-pink transition-colors text-sm font-medium">
+                {method.value}
+              </span>
+            </a>
+          ))}
+        </div>
+
+        <!-- Contact Form Placeholder -->
+        <div class="gradient-border bg-surface rounded-2xl p-8 md:p-12 card-shadow">
+          <h2 class="text-2xl md:text-3xl font-bold font-heading mb-6 text-center">
+            Send Us a Message
+          </h2>
+
+          <form class="max-w-xl mx-auto space-y-6">
+            <div>
+              <label for="name" class="block text-sm font-medium text-text-primary mb-2">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full px-4 py-3 rounded-lg border border-grid-line bg-background focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/20 outline-none transition-colors"
+                placeholder="Your name"
+              />
+            </div>
+
+            <div>
+              <label for="email" class="block text-sm font-medium text-text-primary mb-2">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-4 py-3 rounded-lg border border-grid-line bg-background focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/20 outline-none transition-colors"
+                placeholder="you@example.com"
+              />
+            </div>
+
+            <div>
+              <label for="subject" class="block text-sm font-medium text-text-primary mb-2">
+                Subject
+              </label>
+              <select
+                id="subject"
+                name="subject"
+                required
+                class="w-full px-4 py-3 rounded-lg border border-grid-line bg-background focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/20 outline-none transition-colors"
+              >
+                <option value="">Select a topic...</option>
+                <option value="general">General Inquiry</option>
+                <option value="support">App Support</option>
+                <option value="feedback">Feedback</option>
+                <option value="partnership">Partnership Opportunity</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="message" class="block text-sm font-medium text-text-primary mb-2">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+                class="w-full px-4 py-3 rounded-lg border border-grid-line bg-background focus:border-accent-cyan focus:ring-2 focus:ring-accent-cyan/20 outline-none transition-colors resize-none"
+                placeholder="How can we help?"
+              ></textarea>
+            </div>
+
+            <div class="text-center">
+              <button
+                type="submit"
+                class="btn-primary px-8"
+              >
+                Send Message
+              </button>
+            </div>
+
+            <p class="text-center text-text-secondary text-sm">
+              Note: This form is currently for demonstration. Please use email for actual inquiries.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 md:py-24 bg-surface">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold font-heading mb-8 text-center">
+          Frequently Asked <span class="gradient-text">Questions</span>
+        </h2>
+
+        <div class="space-y-4">
+          <details class="gradient-border bg-surface rounded-xl p-4 group cursor-pointer">
+            <summary class="font-heading font-semibold flex justify-between items-center list-none">
+              When will your apps be available?
+              <span class="text-accent-cyan group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <p class="text-text-secondary text-sm mt-4">
+              We're actively developing all three apps. Sign up for updates and we'll notify you as soon as they're ready for launch.
+            </p>
+          </details>
+
+          <details class="gradient-border bg-surface rounded-xl p-4 group cursor-pointer">
+            <summary class="font-heading font-semibold flex justify-between items-center list-none">
+              Are your apps free?
+              <span class="text-accent-cyan group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <p class="text-text-secondary text-sm mt-4">
+              Pricing varies by app. Emerson's Learning Games will be a one-time purchase with no ads or in-app purchases. Other apps will have pricing announced closer to launch.
+            </p>
+          </details>
+
+          <details class="gradient-border bg-surface rounded-xl p-4 group cursor-pointer">
+            <summary class="font-heading font-semibold flex justify-between items-center list-none">
+              How do I report a bug or request a feature?
+              <span class="text-accent-cyan group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <p class="text-text-secondary text-sm mt-4">
+              We love hearing from users! Send us an email or reach out on Twitter. For bug reports, please include as much detail as possible about what happened and how to reproduce it.
+            </p>
+          </details>
+
+          <details class="gradient-border bg-surface rounded-xl p-4 group cursor-pointer">
+            <summary class="font-heading font-semibold flex justify-between items-center list-none">
+              Do you collect user data?
+              <span class="text-accent-cyan group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <p class="text-text-secondary text-sm mt-4">
+              Privacy is important to us. We collect minimal data necessary for app functionality and never sell user information to third parties. Each app's privacy policy will detail exactly what data is collected and how it's used.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

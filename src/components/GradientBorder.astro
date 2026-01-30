@@ -1,0 +1,20 @@
+---
+interface Props {
+  as?: 'div' | 'section' | 'article';
+  class?: string;
+  hover?: boolean;
+}
+
+const { as: Element = 'div', class: className = '', hover = true } = Astro.props;
+---
+
+<Element
+  class:list={[
+    "relative bg-surface rounded-2xl",
+    hover && "gradient-border",
+    !hover && "border border-grid-line",
+    className
+  ]}
+>
+  <slot />
+</Element>
