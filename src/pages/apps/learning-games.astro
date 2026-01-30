@@ -2,64 +2,101 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import GridBackground from '../../components/GridBackground.astro';
 
-const features = [
+const gameModes = [
   {
-    icon: "🎨",
-    title: "Color Recognition",
-    description: "Interactive games that help children identify and name colors through fun, engaging activities."
+    title: "Memory Cards",
+    description: "The classic matching game with a twist! Flip beautifully illustrated cards to find matching pairs. With over 500 hand-crafted images spanning animals, food, vehicles, instruments, and more, every game feels fresh. Play solo or take turns with a friend - the player with the most matches wins!",
+    features: ["1-2 Players", "Adjustable Grid Size", "500+ Illustrations"],
   },
   {
-    icon: "🔷",
-    title: "Shape Learning",
-    description: "Discover circles, squares, triangles, and more with playful matching and sorting games."
+    title: "Math Bucket",
+    description: "A playful introduction to counting and arithmetic. Fill a bucket with colorful sprites, then add, subtract, multiply, and divide them. Watch the sprites bounce and animate as your child learns that math can be visual, tactile, and genuinely fun.",
+    features: ["Counting Practice", "Basic Arithmetic", "Visual Learning"],
   },
   {
-    icon: "🔤",
-    title: "Letter Adventures",
-    description: "Introduction to the alphabet with sound, tracing, and letter recognition activities."
+    title: "Word Match",
+    description: "Build vocabulary and reading skills with two engaging modes. See a word and tap the matching picture, or see a picture and tap the matching word. Kid-friendly vocabulary with clear, simple labels helps early readers connect words to meaning.",
+    features: ["Two Game Modes", "Reading Practice", "Vocabulary Building"],
   },
   {
-    icon: "🔢",
-    title: "Number Play",
-    description: "Counting, number recognition, and basic math concepts through animated interactions."
+    title: "Spell It!",
+    description: "See a beautiful illustration, then spell the word letter by letter using a colorful on-screen keyboard. Choose words by category, by length, or try fun challenge themes like Animal Kingdom or Yummy Foods. Each correct letter lights up in rainbow colors!",
+    features: ["Multiple Themes", "Difficulty Levels", "Rainbow Feedback"],
   },
   {
-    icon: "🎵",
-    title: "Sound & Music",
-    description: "Audio feedback and playful sounds that make learning engaging and memorable."
+    title: "Typing Fun",
+    description: "A free-form creative space where every letter typed appears in a different color of the rainbow. Perfect for practicing letter recognition, experimenting with the keyboard, or just having fun watching colorful text appear on screen.",
+    features: ["Rainbow Text", "Adjustable Size", "Free Expression"],
   },
   {
-    icon: "👶",
-    title: "Child-Safe Design",
-    description: "No ads, no in-app purchases, and designed for little hands with large touch targets."
+    title: "Restaurant",
+    description: "Run your own restaurant! Browse the menu, take orders, prepare food in the kitchen, and serve customers. This multi-stage game teaches sequencing, memory, and following instructions while encouraging imaginative play.",
+    features: ["Role Play", "Multi-Stage Game", "Family Fun"],
+  },
+  {
+    title: "Item Explorer",
+    description: "Discover the entire library of over 500 beautifully illustrated items organized by category. From animals to vehicles, instruments to food - tap any item to see it up close and learn its name. A visual encyclopedia for curious minds.",
+    features: ["500+ Items", "Organized Categories", "Learn & Explore"],
+  },
+  {
+    title: "Finger Paint",
+    description: "Express creativity with a full-featured drawing canvas. Choose from vibrant colors, adjust brush sizes, or turn on Rainbow Mode for automatic color-changing strokes. Pull down the sticker tray to stamp any of the 500+ illustrations onto your masterpiece!",
+    features: ["Rainbow Mode", "Sticker Library", "Multiple Brushes"],
   },
 ];
 
+const sprites = [
+  { src: "/images/north-star/elephant.webp", alt: "Elephant" },
+  { src: "/images/north-star/lion.webp", alt: "Lion" },
+  { src: "/images/north-star/apple.webp", alt: "Apple" },
+  { src: "/images/north-star/blueberries.webp", alt: "Blueberries" },
+  { src: "/images/north-star/guitar.webp", alt: "Guitar" },
+  { src: "/images/north-star/piano.webp", alt: "Piano" },
+  { src: "/images/north-star/rocket.webp", alt: "Rocket" },
+  { src: "/images/north-star/fireTruck.webp", alt: "Fire Truck" },
+];
+
 const techStack = [
-  { name: "Android", description: "Native Android development" },
-  { name: "Kotlin", description: "Modern, safe language" },
+  { name: "Android", description: "Native Android" },
+  { name: "Kotlin", description: "Modern & Safe" },
   { name: "Jetpack Compose", description: "Declarative UI" },
-  { name: "Material Design 3", description: "Beautiful, accessible UI" },
+  { name: "Material Design 3", description: "Beautiful UI" },
 ];
 ---
 
 <BaseLayout
   title="North Star Learning"
-  description="Educational games designed for young children, helping them learn colors, shapes, letters, and numbers through playful interaction. Now in closed beta on Google Play."
+  description="Educational games designed for young children. 8 game modes, 500+ illustrations. Memory matching, spelling, math, typing, painting, and more. Now in closed beta on Google Play."
 >
-  <!-- Hero Section -->
+  <!-- Hero Section with Floating Sprites -->
   <section class="relative py-20 md:py-28 overflow-hidden">
     <GridBackground variant="hero" />
+
+    <!-- Floating Sprites Background -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      {sprites.map((sprite, i) => (
+        <img
+          src={sprite.src}
+          alt={sprite.alt}
+          class="floating-sprite absolute w-12 h-12 md:w-16 md:h-16 opacity-20 object-contain"
+          style={`
+            left: ${10 + (i % 4) * 25}%;
+            top: ${15 + Math.floor(i / 4) * 50}%;
+            animation-delay: ${i * 0.4}s;
+          `}
+        />
+      ))}
+    </div>
 
     <div class="container-custom relative z-10">
       <div class="max-w-4xl mx-auto">
         <div class="flex items-center gap-4 mb-6">
-          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-cyan to-accent-cyan flex items-center justify-center text-3xl">
-            🎮
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-cyan to-accent-pink flex items-center justify-center text-3xl">
+            🌟
           </div>
           <div>
             <span class="inline-block px-3 py-1 rounded-full bg-accent-cyan/20 text-accent-cyan text-sm font-medium mb-1">
-              Closed Beta
+              Closed Beta on Google Play
             </span>
             <div class="flex flex-wrap gap-2">
               {techStack.slice(0, 3).map((tech) => (
@@ -72,75 +109,123 @@ const techStack = [
         <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6">
           North Star <span class="gradient-text">Learning</span>
         </h1>
-        <p class="text-xl text-text-secondary mb-8 max-w-2xl">
-          Fun, educational games designed for little minds. Help your child discover colors, shapes, letters, and numbers through playful interaction.
+        <p class="text-xl text-text-secondary mb-4 max-w-2xl">
+          Eight game modes. 500+ hand-crafted illustrations. Zero ads.
+        </p>
+        <p class="text-lg text-text-secondary mb-8 max-w-2xl">
+          Educational games designed for ages 2-7 that make learning genuinely fun. From memory matching to spelling to finger painting - there's always something new to explore.
         </p>
 
         <div class="flex flex-wrap gap-4">
           <a href="mailto:contact@emersondigital.dev?subject=North%20Star%20Learning%20Beta%20Access" class="btn-primary">
             Request Beta Access
           </a>
-          <a href="#features" class="btn-secondary">
-            Explore Features
+          <a href="#game-modes" class="btn-secondary">
+            Explore Game Modes
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section id="features" class="py-16 md:py-24">
+  <!-- Sprite Showcase -->
+  <section class="py-12 bg-surface overflow-hidden">
+    <div class="flex animate-scroll gap-8 px-4">
+      {[...sprites, ...sprites].map((sprite) => (
+        <div class="flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-white p-3 shadow-md">
+          <img src={sprite.src} alt={sprite.alt} class="w-full h-full object-contain" />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Game Modes Section -->
+  <section id="game-modes" class="py-16 md:py-24">
     <div class="container-custom">
-      <div class="text-center mb-12">
+      <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">
-          Learning Through <span class="gradient-text">Play</span>
+          Eight Ways to <span class="gradient-text">Play & Learn</span>
         </h2>
         <p class="text-text-secondary max-w-2xl mx-auto">
-          Every game is carefully designed to be both educational and genuinely fun, keeping little ones engaged while they learn.
+          Every game mode is designed to be both educational and genuinely fun, keeping little ones engaged while building real skills.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {features.map((feature) => (
-          <div class="gradient-border bg-surface rounded-2xl p-6 card-shadow card-shadow-hover transition-all duration-300">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-cyan/20 to-accent-pink/20 flex items-center justify-center text-2xl mb-4">
-              {feature.icon}
+      <div class="space-y-24">
+        {gameModes.map((mode, index) => (
+          <div class={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 md:gap-12 items-center`}>
+            <!-- Screenshot Placeholder -->
+            <div class="w-full md:w-1/2">
+              <div class="aspect-[9/16] max-w-[280px] mx-auto rounded-3xl bg-gradient-to-br from-accent-cyan/10 to-accent-pink/10 border-4 border-white shadow-xl flex items-center justify-center relative overflow-hidden">
+                <div class="absolute inset-4 rounded-2xl bg-gradient-to-br from-accent-cyan/5 to-accent-pink/5 flex items-center justify-center">
+                  <div class="text-center">
+                    <span class="text-5xl mb-2 block">📱</span>
+                    <span class="text-text-secondary text-sm">Screenshot coming soon</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h3 class="font-heading font-semibold text-lg mb-2">{feature.title}</h3>
-            <p class="text-text-secondary text-sm">{feature.description}</p>
+
+            <!-- Content -->
+            <div class="w-full md:w-1/2">
+              <div class={`${index % 2 === 0 ? 'md:pl-4' : 'md:pr-4'}`}>
+                <h3 class="text-2xl md:text-3xl font-bold font-heading mb-4">
+                  {mode.title}
+                </h3>
+                <p class="text-text-secondary mb-6 leading-relaxed">
+                  {mode.description}
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  {mode.features.map((feature) => (
+                    <span class="px-3 py-1 rounded-full bg-accent-cyan/10 text-accent-cyan text-sm font-medium">
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Screenshots Placeholder -->
+  <!-- Illustration Library -->
   <section class="py-16 md:py-24 bg-surface">
     <div class="container-custom">
       <div class="text-center mb-12">
         <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">
-          <span class="gradient-text">Screenshots</span>
+          <span class="gradient-text">500+ Illustrations</span>
         </h2>
-        <p class="text-text-secondary">Screenshots coming soon.</p>
+        <p class="text-text-secondary max-w-2xl mx-auto">
+          Every image is hand-crafted with care. Friendly, colorful, and designed to delight young learners across every game mode.
+        </p>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {[1, 2, 3, 4].map((i) => (
-          <div class="aspect-[9/16] rounded-2xl bg-gradient-to-br from-accent-cyan/10 to-accent-pink/10 flex items-center justify-center">
-            <span class="text-4xl opacity-30">📱</span>
+      <div class="grid grid-cols-4 md:grid-cols-8 gap-3 md:gap-4 max-w-4xl mx-auto">
+        {sprites.map((sprite) => (
+          <div class="aspect-square rounded-xl bg-white p-2 md:p-3 shadow-md hover:scale-110 transition-transform duration-200">
+            <img src={sprite.src} alt={sprite.alt} class="w-full h-full object-contain" />
           </div>
         ))}
       </div>
+
+      <p class="text-center text-text-secondary text-sm mt-6">
+        Animals, food, vehicles, instruments, shapes, letters, numbers, and much more...
+      </p>
     </div>
   </section>
 
-  <!-- Tech Stack Section -->
+  <!-- Tech Stack -->
   <section class="py-16 md:py-24">
     <div class="container-custom">
       <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-8 text-center">
-          Built With <span class="gradient-text">Modern Tech</span>
+        <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4 text-center">
+          Built With <span class="gradient-text">Care</span>
         </h2>
+        <p class="text-text-secondary text-center mb-8">
+          Native Android app built with modern tools for smooth performance and a delightful experience.
+        </p>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           {techStack.map((tech) => (
@@ -149,6 +234,12 @@ const techStack = [
               <div class="text-xs text-text-secondary">{tech.description}</div>
             </div>
           ))}
+        </div>
+
+        <div class="mt-8 text-center">
+          <p class="text-text-secondary text-sm">
+            No ads. No in-app purchases. No data collection. Just pure learning fun.
+          </p>
         </div>
       </div>
     </div>
@@ -162,7 +253,7 @@ const techStack = [
           Join the <span class="gradient-text">Closed Beta</span>
         </h2>
         <p class="text-text-secondary mb-6">
-          North Star Learning is available now on Google Play as a closed beta. Email us to request access and be one of the first to try it!
+          North Star Learning is available now on Google Play as a closed beta. Email us to request access and be one of the first to try it with your little ones!
         </p>
         <a href="mailto:contact@emersondigital.dev?subject=North%20Star%20Learning%20Beta%20Access" class="btn-primary">
           Request Beta Access
@@ -171,3 +262,31 @@ const techStack = [
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .floating-sprite {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(5deg);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 20s linear infinite;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>
