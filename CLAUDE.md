@@ -1,7 +1,10 @@
 # EmersonDigital Website
 
 ## Project Overview
-Marketing website for EmersonDigital, showcasing three apps: **North Star Learning** (educational games for kids), BIMGeoSpace, and Neon Task Grid.
+Marketing website for EmersonDigital, showcasing three apps:
+- **North Star Learning** - Educational games for kids (Flutter, closed beta)
+- **BIMGeoSpace** - GPS-accurate AR for construction documentation (Android/Kotlin, ARCore)
+- **Neon Task Grid** - Voice-powered task management (TypeScript, AWS, OpenAI)
 
 **Live URL:** https://emersondigital.dev
 **Status:** North Star Learning in closed beta, other apps coming soon
@@ -13,13 +16,24 @@ Marketing website for EmersonDigital, showcasing three apps: **North Star Learni
 - **Hosting:** AWS S3 + CloudFront CDN
 - **Domain:** Cloudflare (emersondigital.dev)
 
-## Design System: "Light Synthwave"
+## Design System: "Light Synthwave" + App Themes
+**Default (Light):**
 - Background: #FAFAFA (off-white)
 - Surface: #FFFFFF (cards)
 - Text Primary: #1a1a2e (deep navy)
 - Accent Cyan: #06b6d4
 - Accent Pink: #ec4899
 - Gradient: linear-gradient(135deg, cyan, pink)
+
+**Dark Neon Theme** (Neon Task Grid):
+- Background: #0c1020 (deep blue-black)
+- Accent Cyan: #60f2ff, Accent Pink: #ff6fbf
+- Scanlines overlay, neon glows
+
+**Dark Geo Theme** (BIMGeoSpace):
+- Background: #0a1628 (earth/satellite blue)
+- Accent Cyan: #03dac5, Accent Purple: #bb86fc
+- Topo-line overlay, accuracy pulse animations
 
 ## Project Structure
 ```
@@ -104,6 +118,12 @@ image: "/images/blog/optional-image.png"
 - **Neon Task Grid page redesign**: Dark neon synthwave theme, voice AI feature highlight, accurate tech stack, UI mockups
   - Added `theme` prop to BaseLayout for dark-neon mode
   - Added comprehensive dark theme CSS with neon glows, scanlines, and animations
+- **BIMGeoSpace page redesign**: Dark geo theme with earth/satellite colors, accurate Android AR app features
+  - Added `dark-geo` theme to BaseLayout and global.css
+  - Accurate tech stack: Kotlin, ARCore Geospatial API, SceneView, AWS Lambda, DynamoDB, S3
+  - AR interface mockup with accuracy indicators, coordinate HUD, three tap modes (ADD/POLL/DELETE)
+  - Cloud architecture diagram, site documentation workflow, professional use cases
+  - Source app analyzed from: `C:\Users\alkal\AndroidStudioProjects\BIMGeoSpace`
 
 ## Next Steps (for Claude)
 When user returns, potential tasks:
