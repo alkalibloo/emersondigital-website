@@ -51,12 +51,31 @@
       font-size: 1.25rem;
     }
 
+    .section.completed {
+      opacity: 0.7;
+      background: #f0fdf4;
+    }
+
+    .section.completed h2 {
+      border-bottom-color: #22c55e;
+    }
+
     .task {
       margin: 16px 0;
       padding: 16px;
       background: #f8fafc;
       border-radius: 8px;
       border-left: 4px solid #06b6d4;
+    }
+
+    .task.done {
+      background: #f0fdf4;
+      border-left-color: #22c55e;
+    }
+
+    .task.done .task-title {
+      text-decoration: line-through;
+      color: #64748b;
     }
 
     .task-header {
@@ -70,7 +89,7 @@
       width: 20px;
       height: 20px;
       margin-top: 2px;
-      accent-color: #06b6d4;
+      accent-color: #22c55e;
     }
 
     .task-title {
@@ -116,6 +135,11 @@
       font-size: 0.85rem;
     }
 
+    .note.success {
+      background: #dcfce7;
+      border-color: #22c55e;
+    }
+
     .priority-high {
       border-left-color: #ec4899;
     }
@@ -153,6 +177,26 @@
       font-weight: 500;
     }
 
+    .completed-banner {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: white;
+      padding: 16px 24px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .completed-banner h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.1rem;
+    }
+
+    .completed-banner p {
+      margin: 0;
+      opacity: 0.9;
+      font-size: 0.9rem;
+    }
+
     @media print {
       body {
         background: white;
@@ -187,40 +231,92 @@
   <h1>EmersonDigital Setup Checklist</h1>
   <p class="subtitle">Your manual tasks - click by click</p>
 
-  <!-- SECTION 1: DOMAIN -->
-  <div class="section">
-    <h2>1. Domain Registration</h2>
+  <!-- COMPLETED BANNER -->
+  <div class="completed-banner">
+    <h3>🎉 Website Launched!</h3>
+    <p><strong>https://emersondigital.dev</strong> is live with SSL, CloudFront CDN, and GitHub repo</p>
+  </div>
 
-    <div class="task priority-high">
+  <!-- SECTION 0: COMPLETED -->
+  <div class="section completed">
+    <h2>✅ Already Completed</h2>
+
+    <div class="task done">
       <div class="task-header">
-        <input type="checkbox" id="task-domain">
-        <label class="task-title" for="task-domain">Register emersondigital.com</label>
+        <input type="checkbox" checked disabled>
+        <span class="task-title">Domain: emersondigital.dev registered on Cloudflare</span>
+      </div>
+    </div>
+
+    <div class="task done">
+      <div class="task-header">
+        <input type="checkbox" checked disabled>
+        <span class="task-title">DNS configured with CloudFront</span>
+      </div>
+    </div>
+
+    <div class="task done">
+      <div class="task-header">
+        <input type="checkbox" checked disabled>
+        <span class="task-title">SSL certificate issued (AWS ACM)</span>
+      </div>
+    </div>
+
+    <div class="task done">
+      <div class="task-header">
+        <input type="checkbox" checked disabled>
+        <span class="task-title">CloudFront CDN distribution created</span>
       </div>
       <div class="task-details">
-        <ol>
-          <li>Go to <span class="url">https://domains.cloudflare.com</span></li>
-          <li>Search for <span class="highlight">emersondigital.com</span></li>
-          <li>If taken, try alternatives:
-            <ul>
-              <li><span class="highlight">emersondigital.dev</span></li>
-              <li><span class="highlight">emersondigital.io</span></li>
-              <li><span class="highlight">emersondigi.com</span></li>
-            </ul>
-          </li>
-          <li>Add to cart and checkout (~$10/year)</li>
-          <li>Use your personal email for registrant contact</li>
-          <li>Enable WHOIS privacy (free on Cloudflare)</li>
-        </ol>
-        <div class="note">
-          <strong>Why Cloudflare?</strong> At-cost pricing, free WHOIS privacy, easy DNS management, and we can point it to your S3/CloudFront later.
+        <div class="note success">
+          Distribution ID: <strong>ENN2X7ZMEE1PY</strong><br>
+          Domain: d36aqd64of20jg.cloudfront.net
         </div>
+      </div>
+    </div>
+
+    <div class="task done">
+      <div class="task-header">
+        <input type="checkbox" checked disabled>
+        <span class="task-title">S3 bucket created and configured</span>
+      </div>
+      <div class="task-details">
+        <div class="note success">
+          Bucket: <strong>emersondigital-website</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="task done">
+      <div class="task-header">
+        <input type="checkbox" checked disabled>
+        <span class="task-title">Website deployed and live</span>
+      </div>
+    </div>
+
+    <div class="task done">
+      <div class="task-header">
+        <input type="checkbox" checked disabled>
+        <span class="task-title">GitHub repo created and pushed</span>
+      </div>
+      <div class="task-details">
+        <div class="note success">
+          Repo: <strong>github.com/alkalibloo/emersondigital-website</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="task done">
+      <div class="task-header">
+        <input type="checkbox" checked disabled>
+        <span class="task-title">GitHub CLI installed and authenticated</span>
       </div>
     </div>
   </div>
 
-  <!-- SECTION 2: EMAIL -->
+  <!-- SECTION 1: EMAIL -->
   <div class="section">
-    <h2>2. Professional Email Setup</h2>
+    <h2>1. Professional Email Setup</h2>
 
     <div class="task priority-high">
       <div class="task-header">
@@ -234,7 +330,7 @@
           <li>Enter business name: <span class="highlight">EmersonDigital</span></li>
           <li>Select "Just you" for number of employees (can change later)</li>
           <li>Enter your personal email as admin contact</li>
-          <li>Choose your domain: <span class="highlight">emersondigital.com</span></li>
+          <li>Choose your domain: <span class="highlight">emersondigital.dev</span></li>
           <li>Create your first user:
             <dl class="info-grid">
               <dt>First name:</dt><dd>Your first name (or "Emerson")</dd>
@@ -258,13 +354,13 @@
         <ol>
           <li>Go to <span class="url">https://admin.google.com</span></li>
           <li>Click Directory → Users</li>
-          <li>Click on your user (hello@emersondigital.com)</li>
+          <li>Click on your user (hello@emersondigital.dev)</li>
           <li>Click "Add Alternate Emails"</li>
           <li>Add these aliases (all go to your inbox):
             <ul>
-              <li><span class="highlight">support@emersondigital.com</span></li>
-              <li><span class="highlight">press@emersondigital.com</span></li>
-              <li><span class="highlight">contact@emersondigital.com</span></li>
+              <li><span class="highlight">support@emersondigital.dev</span></li>
+              <li><span class="highlight">press@emersondigital.dev</span></li>
+              <li><span class="highlight">contact@emersondigital.dev</span></li>
             </ul>
           </li>
           <li>Click Save</li>
@@ -276,9 +372,9 @@
     </div>
   </div>
 
-  <!-- SECTION 3: SOCIAL - PRIORITY 1 -->
+  <!-- SECTION 2: SOCIAL - PRIORITY 1 -->
   <div class="section">
-    <h2>3. Social Media - Priority 1 (Do Today)</h2>
+    <h2>2. Social Media - Priority 1 (Do Today)</h2>
 
     <div class="task priority-high">
       <div class="task-header">
@@ -290,7 +386,7 @@
           <li>Go to <span class="url">https://twitter.com/i/flow/signup</span></li>
           <li>Click "Create account"</li>
           <li>Use name: <span class="highlight">EmersonDigital</span></li>
-          <li>Use email: <span class="highlight">hello@emersondigital.com</span> (or personal for now)</li>
+          <li>Use email: <span class="highlight">hello@emersondigital.dev</span> (or personal for now)</li>
           <li>Complete phone verification</li>
           <li>Choose username: <span class="highlight">@EmersonDigital</span>
             <ul>
@@ -309,10 +405,10 @@
 🏗️ BIMGeoSpace
 📋 Neon Task Grid
 
-🔗 emersondigital.com</div>
+🔗 emersondigital.dev</div>
         <ol start="11">
           <li>Add location: Your city or "The Internet"</li>
-          <li>Add website: <span class="highlight">emersondigital.com</span></li>
+          <li>Add website: <span class="highlight">emersondigital.dev</span></li>
         </ol>
       </div>
     </div>
@@ -330,7 +426,7 @@
             <dl class="info-grid">
               <dt>Name:</dt><dd><span class="highlight">EmersonDigital</span></dd>
               <dt>URL:</dt><dd><span class="highlight">linkedin.com/company/emersondigital</span></dd>
-              <dt>Website:</dt><dd>emersondigital.com</dd>
+              <dt>Website:</dt><dd>emersondigital.dev</dd>
               <dt>Industry:</dt><dd>Software Development</dd>
               <dt>Size:</dt><dd>1 employee (for now)</dd>
               <dt>Type:</dt><dd>Privately Held</dd>
@@ -351,41 +447,29 @@ We believe great software should solve real problems while being a joy to use.</
       </div>
     </div>
 
-    <div class="task priority-high">
+    <div class="task">
       <div class="task-header">
-        <input type="checkbox" id="task-github">
-        <label class="task-title" for="task-github">Create GitHub Organization</label>
+        <input type="checkbox" id="task-github-org">
+        <label class="task-title" for="task-github-org">Create GitHub Organization (optional)</label>
       </div>
       <div class="task-details">
+        <div class="note">
+          <strong>Note:</strong> Repo is currently under your personal account (alkalibloo). You can create an org later and transfer it if you want.
+        </div>
         <ol>
           <li>Go to <span class="url">https://github.com/organizations/plan</span></li>
           <li>Choose "Create a free organization"</li>
-          <li>Organization name: <span class="highlight">emersondigital</span>
-            <ul>
-              <li>If taken: <span class="highlight">emersondigitalhq</span></li>
-            </ul>
-          </li>
-          <li>Contact email: <span class="highlight">hello@emersondigital.com</span></li>
-          <li>Select "My personal account" for ownership</li>
-          <li>Skip adding members</li>
-          <li>Go to Settings → Profile</li>
-          <li>Add:
-            <dl class="info-grid">
-              <dt>Display name:</dt><dd>EmersonDigital</dd>
-              <dt>Description:</dt><dd>Crafting thoughtful software for work and play</dd>
-              <dt>URL:</dt><dd>emersondigital.com</dd>
-              <dt>Location:</dt><dd>Your city</dd>
-            </dl>
-          </li>
-          <li>Upload profile picture (logo)</li>
+          <li>Organization name: <span class="highlight">emersondigital</span></li>
+          <li>Contact email: <span class="highlight">hello@emersondigital.dev</span></li>
+          <li>Transfer repo from alkalibloo/emersondigital-website if desired</li>
         </ol>
       </div>
     </div>
   </div>
 
-  <!-- SECTION 4: SOCIAL - PRIORITY 2 -->
+  <!-- SECTION 3: SOCIAL - PRIORITY 2 -->
   <div class="section">
-    <h2>4. Social Media - Priority 2 (This Week)</h2>
+    <h2>3. Social Media - Priority 2 (This Week)</h2>
 
     <div class="task">
       <div class="task-header">
@@ -396,7 +480,7 @@ We believe great software should solve real problems while being a joy to use.</
         <ol>
           <li>Download Instagram app or go to <span class="url">https://instagram.com</span></li>
           <li>Click "Sign up"</li>
-          <li>Use email: <span class="highlight">hello@emersondigital.com</span></li>
+          <li>Use email: <span class="highlight">hello@emersondigital.dev</span></li>
           <li>Full name: <span class="highlight">EmersonDigital</span></li>
           <li>Username: <span class="highlight">emersondigital</span>
             <ul>
@@ -415,7 +499,7 @@ We believe great software should solve real problems while being a joy to use.</
 📋 Neon Task Grid
 👇 See our apps</div>
         <ol start="10">
-          <li>Add website link</li>
+          <li>Add website link: emersondigital.dev</li>
         </ol>
       </div>
     </div>
@@ -450,7 +534,7 @@ On this channel:
 
 Subscribe for updates on our journey!
 
-🌐 Website: emersondigital.com
+🌐 Website: emersondigital.dev
 🐦 Twitter: @EmersonDigital</div>
         <ol start="11">
           <li>Add channel links (website, Twitter, etc.)</li>
@@ -467,7 +551,7 @@ Subscribe for updates on our journey!
       <div class="task-details">
         <ol>
           <li>Download TikTok or go to <span class="url">https://tiktok.com</span></li>
-          <li>Sign up with email: <span class="highlight">hello@emersondigital.com</span></li>
+          <li>Sign up with email: <span class="highlight">hello@emersondigital.dev</span></li>
           <li>Set username: <span class="highlight">emersondigital</span>
             <ul>
               <li>If taken: <span class="highlight">emersondigi</span></li>
@@ -490,9 +574,9 @@ Subscribe for updates on our journey!
     </div>
   </div>
 
-  <!-- SECTION 5: NEWSLETTER -->
+  <!-- SECTION 4: NEWSLETTER -->
   <div class="section">
-    <h2>5. Newsletter Setup</h2>
+    <h2>4. Newsletter Setup</h2>
 
     <div class="task">
       <div class="task-header">
@@ -503,7 +587,7 @@ Subscribe for updates on our journey!
         <ol>
           <li>Go to <span class="url">https://beehiiv.com</span></li>
           <li>Click "Start for free"</li>
-          <li>Sign up with: <span class="highlight">hello@emersondigital.com</span></li>
+          <li>Sign up with: <span class="highlight">hello@emersondigital.dev</span></li>
           <li>Publication name: <span class="highlight">EmersonDigital Dispatch</span></li>
           <li>Choose subdomain: <span class="highlight">emersondigital.beehiiv.com</span></li>
           <li>Complete onboarding</li>
@@ -511,7 +595,7 @@ Subscribe for updates on our journey!
           <li>Add description: <span class="highlight">Updates on our apps, dev insights, and early access to new features.</span></li>
           <li>Upload logo</li>
           <li>Set sender name: <span class="highlight">EmersonDigital</span></li>
-          <li>Set reply-to: <span class="highlight">hello@emersondigital.com</span></li>
+          <li>Set reply-to: <span class="highlight">hello@emersondigital.dev</span></li>
         </ol>
         <div class="note">
           <strong>Free tier:</strong> 2,500 subscribers, unlimited sends. Perfect for starting out!
@@ -520,9 +604,9 @@ Subscribe for updates on our journey!
     </div>
   </div>
 
-  <!-- SECTION 6: ANALYTICS -->
+  <!-- SECTION 5: ANALYTICS -->
   <div class="section">
-    <h2>6. Analytics Setup</h2>
+    <h2>5. Analytics Setup</h2>
 
     <div class="task">
       <div class="task-header">
@@ -532,7 +616,7 @@ Subscribe for updates on our journey!
       <div class="task-details">
         <ol>
           <li>Go to <span class="url">https://analytics.google.com</span></li>
-          <li>Sign in with Google Workspace account</li>
+          <li>Sign in with Google Workspace account (or personal)</li>
           <li>Click "Start measuring"</li>
           <li>Account name: <span class="highlight">EmersonDigital</span></li>
           <li>Property name: <span class="highlight">EmersonDigital Website</span></li>
@@ -541,40 +625,40 @@ Subscribe for updates on our journey!
           <li>Business details: Small business, examine user behavior</li>
           <li>Accept terms</li>
           <li>Choose "Web" platform</li>
-          <li>Website URL: <span class="highlight">https://emersondigital.com</span></li>
+          <li>Website URL: <span class="highlight">https://emersondigital.dev</span></li>
           <li>Stream name: <span class="highlight">Main Website</span></li>
           <li><strong>Copy the Measurement ID</strong> (looks like G-XXXXXXXXXX)</li>
         </ol>
         <div class="note">
-          <strong>Give me the Measurement ID</strong> and I'll add it to your website!
+          <strong>Give Claude the Measurement ID</strong> and it'll add it to your website!
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SECTION 7: LINK IN BIO -->
+  <!-- SECTION 6: LINK IN BIO -->
   <div class="section">
-    <h2>7. Link-in-Bio Tool</h2>
+    <h2>6. Link-in-Bio Tool</h2>
 
     <div class="task">
       <div class="task-header">
         <input type="checkbox" id="task-linktree">
-        <label class="task-title" for="task-linktree">Set up Linktree (temporary until I build you a custom one)</label>
+        <label class="task-title" for="task-linktree">Set up Linktree (or ask Claude to build custom /links page)</label>
       </div>
       <div class="task-details">
         <ol>
           <li>Go to <span class="url">https://linktr.ee</span></li>
           <li>Click "Sign up free"</li>
-          <li>Email: <span class="highlight">hello@emersondigital.com</span></li>
+          <li>Email: <span class="highlight">hello@emersondigital.dev</span></li>
           <li>Username: <span class="highlight">emersondigital</span></li>
           <li>Category: Tech / Creator</li>
           <li>Add links:
             <ul>
-              <li>🌐 Website → emersondigital.com</li>
-              <li>🎮 Emerson's Learning Games → emersondigital.com/apps/learning-games</li>
-              <li>🏗️ BIMGeoSpace → emersondigital.com/apps/bimgeospace</li>
-              <li>📋 Neon Task Grid → emersondigital.com/apps/neon-task-grid</li>
-              <li>📝 Blog → emersondigital.com/blog</li>
+              <li>🌐 Website → emersondigital.dev</li>
+              <li>🎮 Emerson's Learning Games → emersondigital.dev/apps/learning-games</li>
+              <li>🏗️ BIMGeoSpace → emersondigital.dev/apps/bimgeospace</li>
+              <li>📋 Neon Task Grid → emersondigital.dev/apps/neon-task-grid</li>
+              <li>📝 Blog → emersondigital.dev/blog</li>
               <li>📧 Newsletter → emersondigital.beehiiv.com</li>
             </ul>
           </li>
@@ -584,9 +668,9 @@ Subscribe for updates on our journey!
     </div>
   </div>
 
-  <!-- SECTION 8: PRODUCT HUNT -->
+  <!-- SECTION 7: PRODUCT HUNT -->
   <div class="section">
-    <h2>8. Product Hunt (Prep for Launch)</h2>
+    <h2>7. Product Hunt (Prep for Launch)</h2>
 
     <div class="task">
       <div class="task-header">
@@ -601,7 +685,7 @@ Subscribe for updates on our journey!
             <dl class="info-grid">
               <dt>Name:</dt><dd>Your real name</dd>
               <dt>Headline:</dt><dd>Founder @ EmersonDigital</dd>
-              <dt>Website:</dt><dd>emersondigital.com</dd>
+              <dt>Website:</dt><dd>emersondigital.dev</dd>
             </dl>
           </li>
           <li>Start engaging: upvote products, leave comments (builds credibility before you launch)</li>
@@ -620,73 +704,85 @@ Subscribe for updates on our journey!
       <tr style="border-bottom: 1px solid #e2e8f0;">
         <td style="padding: 8px;"><strong>Platform</strong></td>
         <td style="padding: 8px;"><strong>Handle/URL</strong></td>
-        <td style="padding: 8px;"><strong>Email to Use</strong></td>
+        <td style="padding: 8px;"><strong>Status</strong></td>
       </tr>
-      <tr style="border-bottom: 1px solid #e2e8f0;">
+      <tr style="border-bottom: 1px solid #e2e8f0; background: #f0fdf4;">
         <td style="padding: 8px;">Domain</td>
-        <td style="padding: 8px;"><code>emersondigital.com</code></td>
-        <td style="padding: 8px;">Personal</td>
+        <td style="padding: 8px;"><code>emersondigital.dev</code></td>
+        <td style="padding: 8px;">✅ Done</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #e2e8f0; background: #f0fdf4;">
+        <td style="padding: 8px;">Website</td>
+        <td style="padding: 8px;"><code>https://emersondigital.dev</code></td>
+        <td style="padding: 8px;">✅ Live</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #e2e8f0; background: #f0fdf4;">
+        <td style="padding: 8px;">GitHub Repo</td>
+        <td style="padding: 8px;"><code>github.com/alkalibloo/emersondigital-website</code></td>
+        <td style="padding: 8px;">✅ Done</td>
       </tr>
       <tr style="border-bottom: 1px solid #e2e8f0;">
         <td style="padding: 8px;">Google Workspace</td>
-        <td style="padding: 8px;"><code>hello@emersondigital.com</code></td>
-        <td style="padding: 8px;">-</td>
+        <td style="padding: 8px;"><code>hello@emersondigital.dev</code></td>
+        <td style="padding: 8px;">⏳ Todo</td>
       </tr>
       <tr style="border-bottom: 1px solid #e2e8f0;">
         <td style="padding: 8px;">Twitter/X</td>
         <td style="padding: 8px;"><code>@EmersonDigital</code></td>
-        <td style="padding: 8px;">hello@</td>
+        <td style="padding: 8px;">⏳ Todo</td>
       </tr>
       <tr style="border-bottom: 1px solid #e2e8f0;">
         <td style="padding: 8px;">LinkedIn</td>
         <td style="padding: 8px;"><code>/company/emersondigital</code></td>
-        <td style="padding: 8px;">hello@</td>
-      </tr>
-      <tr style="border-bottom: 1px solid #e2e8f0;">
-        <td style="padding: 8px;">GitHub</td>
-        <td style="padding: 8px;"><code>emersondigital</code></td>
-        <td style="padding: 8px;">hello@</td>
+        <td style="padding: 8px;">⏳ Todo</td>
       </tr>
       <tr style="border-bottom: 1px solid #e2e8f0;">
         <td style="padding: 8px;">Instagram</td>
         <td style="padding: 8px;"><code>@emersondigital</code></td>
-        <td style="padding: 8px;">hello@</td>
+        <td style="padding: 8px;">⏳ Todo</td>
       </tr>
       <tr style="border-bottom: 1px solid #e2e8f0;">
         <td style="padding: 8px;">YouTube</td>
         <td style="padding: 8px;"><code>@EmersonDigital</code></td>
-        <td style="padding: 8px;">hello@ (Workspace)</td>
+        <td style="padding: 8px;">⏳ Todo</td>
       </tr>
       <tr style="border-bottom: 1px solid #e2e8f0;">
         <td style="padding: 8px;">TikTok</td>
         <td style="padding: 8px;"><code>@emersondigital</code></td>
-        <td style="padding: 8px;">hello@</td>
+        <td style="padding: 8px;">⏳ Todo</td>
       </tr>
       <tr style="border-bottom: 1px solid #e2e8f0;">
         <td style="padding: 8px;">Beehiiv</td>
         <td style="padding: 8px;"><code>emersondigital.beehiiv.com</code></td>
-        <td style="padding: 8px;">hello@</td>
+        <td style="padding: 8px;">⏳ Todo</td>
       </tr>
       <tr style="border-bottom: 1px solid #e2e8f0;">
         <td style="padding: 8px;">Linktree</td>
         <td style="padding: 8px;"><code>linktr.ee/emersondigital</code></td>
-        <td style="padding: 8px;">hello@</td>
+        <td style="padding: 8px;">⏳ Todo</td>
       </tr>
       <tr>
         <td style="padding: 8px;">Product Hunt</td>
-        <td style="padding: 8px;"><code>@YourName</code></td>
-        <td style="padding: 8px;">Twitter login</td>
+        <td style="padding: 8px;"><code>producthunt.com/@YourName</code></td>
+        <td style="padding: 8px;">⏳ Todo</td>
       </tr>
     </table>
   </div>
 
+  <!-- DEPLOY COMMANDS -->
+  <div class="section">
+    <h2>Quick Deploy Commands</h2>
+    <div class="copy-box"># Build and deploy to S3
+npm run build
+aws s3 sync dist/ s3://emersondigital-website --delete
+
+# Invalidate CloudFront cache
+aws cloudfront create-invalidation --distribution-id ENN2X7ZMEE1PY --paths "/*"</div>
+  </div>
+
   <div class="footer">
-    <p>EmersonDigital Setup Checklist</p>
-    <p>Once complete, let me know and I'll:</p>
-    <p>✅ Add Google Analytics to the site<br>
-    ✅ Add newsletter signup form<br>
-    ✅ Build custom /links page<br>
-    ✅ Set up CloudFront + custom domain</p>
+    <p>EmersonDigital Setup Checklist - Updated Jan 30, 2026</p>
+    <p>When you complete more tasks, ask Claude to update this checklist!</p>
   </div>
 
 </body>
