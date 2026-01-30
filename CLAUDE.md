@@ -1,9 +1,10 @@
 # EmersonDigital Website
 
 ## Project Overview
-Marketing website for EmersonDigital, showcasing three apps: North Star Learning, BIMGeoSpace, and Neon Task Grid.
+Marketing website for EmersonDigital, showcasing three apps: **North Star Learning** (educational games for kids), BIMGeoSpace, and Neon Task Grid.
 
 **Live URL:** https://emersondigital.dev
+**Status:** North Star Learning in closed beta, other apps coming soon
 
 ## Tech Stack
 - **Framework:** Astro 5.x (static site generation)
@@ -24,13 +25,14 @@ Marketing website for EmersonDigital, showcasing three apps: North Star Learning
 ```
 src/
 ├── components/     # Reusable Astro components
-├── content/blog/   # Markdown blog posts
+├── content/blog/   # Blog posts (currently "coming soon" placeholder)
 ├── layouts/        # Page layouts (Base, Blog)
 ├── pages/          # Routes
-│   ├── apps/       # App detail pages
+│   ├── apps/       # App detail pages (learning-games, bimgeospace, neon-task-grid)
 │   └── blog/       # Blog listing + dynamic [slug]
 ├── styles/         # Global CSS
 └── lib/            # Utility functions
+promo/              # Marketing images (Instagram posts, ads, app illustrations)
 ```
 
 ## AWS Infrastructure
@@ -90,11 +92,24 @@ image: "/images/blog/optional-image.png"
 ## Related Resources
 - `ROLLOUT-PLAN.md` - Marketing strategy and social media plan
 - `YOUR-TASKS-CHECKLIST.html` - Manual setup tasks (accounts to create)
+- `promo/` - Marketing images for Instagram/ads (5 Instagram posts, 5 ads, app illustrations)
+
+## Recent Changes
+- Renamed learning games app to "North Star Learning"
+- Added closed beta signup CTA to North Star Learning page
+- Redesigned app page with 5 game modes (Memory Cards, Math Bucket, Word Match, Spell It!, Typing Fun)
+- Replaced blog with "coming soon" placeholder
+- Removed GitHub link from footer and contact page
+- Updated social links (Twitter: @EmersonDigit, Email: contact@emersondigital.dev)
+- **Neon Task Grid page redesign**: Dark neon synthwave theme, voice AI feature highlight, accurate tech stack, UI mockups
+  - Added `theme` prop to BaseLayout for dark-neon mode
+  - Added comprehensive dark theme CSS with neon glows, scanlines, and animations
 
 ## Next Steps (for Claude)
 When user returns, potential tasks:
 - [ ] Add Google Analytics (need Measurement ID)
 - [ ] Add newsletter signup form
 - [ ] Build custom /links page
-- [ ] Create social media graphics templates
 - [ ] Add press kit page (/press)
+- [ ] Add the promo/ images to git if ready to commit
+- [ ] Write first blog posts when ready
